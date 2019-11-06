@@ -6,10 +6,10 @@ using namespace std;
 
 class Elem{
   private:
-    char symb;
+    string symb;
   public:
-    Elem(const char);
-    string toString();
+    Elem(const string);
+    friend ostream& operator<<(ostream& , const Elem&);
 };
 
 #endif

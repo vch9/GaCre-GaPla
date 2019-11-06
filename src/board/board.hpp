@@ -1,7 +1,8 @@
 #ifndef BOARD
 #define BOARD
 
-#include "cells/cell.hpp"
+#include "../cells/cell.hpp"
+#include <vector>
 
 class Board{
   private:
@@ -11,6 +12,8 @@ class Board{
 
   public:
     Board(const int, const int);
+    void setCell(const int, const int, Cell*);
+    void print();
 };
 
 

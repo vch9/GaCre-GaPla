@@ -13,7 +13,7 @@ class Cell{
   public:
     Cell(const int, const int, Elem);
     string toString();
-    friend ostream& operator<<(ostream& , const Cell);
+    friend ostream& operator<<(ostream& , const Cell&);
 
 };
 
