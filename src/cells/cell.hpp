@@ -9,9 +9,9 @@ class Cell{
   private:
     const int pos_i;
     const int pos_j;
-    Elem elem;
+    Elem* elem;
   public:
-    Cell(const int, const int, Elem);
+    Cell(const int, const int, Elem*);
     string toString();
     friend ostream& operator<<(ostream& , const Cell&);
 
