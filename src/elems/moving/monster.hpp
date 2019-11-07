@@ -5,7 +5,10 @@
 
 class Monster: public MovingElem{
     public:
-        Monster(Board*, int, int);
+        Monster(Game*, int, int);
+
+        void action();
+        void onCollision(Elem*);
 };
 
 #endif

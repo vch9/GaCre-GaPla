@@ -4,8 +4,17 @@
 #include "movingElem.hpp"
 
 class Player: public MovingElem{
+    private:
+        int diamonds;
+        int teleports;
+        int hp;
     public:
-        Player(Board*, int, int);
+        Player(Game* g, int pos_i, int pos_j, int teleports, int hp);
+        void addDiamond(int);
+        void addTeleport();
+
+        void onCollision(Elem*);
+        void action();
 };
 
 #endif

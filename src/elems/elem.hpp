@@ -2,20 +2,21 @@
 #define ELEM
 
 #include <iostream>
-#include "../board/board.hpp"
+#include "../game/game.hpp"
 using namespace std;
-class Board;
+class Game;
 
 class Elem{
   protected:
     string symb;
-    Board* board;
+    Game* game;
+    Elem(const string, Game*);
 
   public:
-    Elem(const string, Board*);
     friend ostream& operator<<(ostream& , const Elem&);
     string getSymb();
-    void action();
+    virtual void action();
+    virtual void onCollision(Elem*);
 };
 
 #endif
