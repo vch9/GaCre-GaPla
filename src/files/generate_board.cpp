@@ -30,7 +30,7 @@ int GenerateBoard::getBoardCols(string path){
     return acc;
 }
 
-Board* GenerateBoard::createBoard(string path){
+Board* GenerateBoard::createBoard(Game* g, string path){
     int lines = GenerateBoard::getBoardLines(path);
     int cols = GenerateBoard::getBoardCols(path);
     Board* b = new Board(lines, cols);
@@ -47,25 +47,25 @@ Board* GenerateBoard::createBoard(string path){
         }
         else{
             if(c=='X'){
-                b->setCell(i, j, new Cell(i, j, new Wall(b)));
+                b->setCell(i, j, new Cell(i, j, new Wall(g)));
             }
             else if(c=='-'){
-                b->setCell(i, j, new Cell(i, j, new Door(b)));
+                b->setCell(i, j, new Cell(i, j, new Door(g)));
             }
             else if(c=='+'){
-                b->setCell(i, j, new Cell(i, j, new Door(b)));
+                b->setCell(i, j, new Cell(i, j, new Door(g)));
             }
             else if(c=='$'){
-                b->setCell(i, j, new Cell(i, j, new Diamond(b)));
+                b->setCell(i, j, new Cell(i, j, new Diamond(g)));
             }
             else if(c=='*'){
-                b->setCell(i, j, new Cell(i, j, new Charge(b)));
+                b->setCell(i, j, new Cell(i, j, new Charge(g)));
             }
             else if(c=='s'){
-                b->setCell(i, j, new Cell(i, j, new Monster(b, i, j)));
+                b->setCell(i, j, new Cell(i, j, new Monster(g, i, j)));
             }
             else{
-                b->setCell(i, j, new Cell(i, j, nullptr)); 
+                b->setCell(i, j, new Cell(i, j, nullptr));
             }
             j++;
         }

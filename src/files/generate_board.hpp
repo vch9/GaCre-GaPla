@@ -1,6 +1,7 @@
 #ifndef GENERATE_BOARD
 #define GENERATE_BOARD
 
+#include "../game/game.hpp"
 #include "../board/board.hpp"
 #include "../cells/cell.hpp"
 
@@ -19,7 +20,7 @@ class GenerateBoard{
     public:
         static int getBoardLines(string);
         static int getBoardCols(string);
-        static Board* createBoard(string);
+        static Board* createBoard(Game*, string);
 };
 
 #endif
