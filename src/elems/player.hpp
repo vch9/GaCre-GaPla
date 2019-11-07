@@ -1,9 +1,9 @@
 #ifndef PLAYER
 #define PLAYER
 
-#include "movingElem.hpp"
+#include "elem.hpp"
 
-class Player: public MovingElem{
+class Player: public Elem{
     private:
         int diamonds;
         int teleports;

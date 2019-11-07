@@ -9,8 +9,8 @@
 #include "../elems/charge.hpp"
 #include "../elems/diamond.hpp"
 #include "../elems/door.hpp"
-#include "../elems/moving/player.hpp"
-#include "../elems/moving/monster.hpp"
+#include "../elems/player.hpp"
+#include "../elems/monster.hpp"
 
 #include <iostream>
 #include <fstream>
