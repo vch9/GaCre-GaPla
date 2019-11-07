@@ -1,5 +1,5 @@
 #include "wall.hpp"
 
-Wall::Wall(Board* b): Elem("X",b){
+Wall::Wall(Game* g): Elem("X",g){
 
 }

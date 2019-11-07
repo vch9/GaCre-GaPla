@@ -5,7 +5,7 @@
 
 class Wall : public Elem{
     public:
-        Wall(Board* b);
+        Wall(Game* g);
 };
 
 #endif

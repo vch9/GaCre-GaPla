@@ -1,6 +1,6 @@
 #include "elem.hpp"
 
-Elem::Elem(const string c, Board* b) : symb(c), board(b) {
+Elem::Elem(const string c, Game* g) : symb(c), game(g) {
     
 }
 
@@ -14,5 +14,9 @@ string Elem::getSymb(){
 }
 
 void Elem::action(){
-    cout << "action" << endl;
+    // does nothing;
+}
+
+void Elem::onCollision(Elem*){
+    // nothing happens
 }
