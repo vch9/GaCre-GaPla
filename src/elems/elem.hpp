@@ -20,7 +20,7 @@ class Elem{
 
     friend ostream& operator<<(ostream& , const Elem&);
     string getSymb();
-    virtual void action();
+    virtual void takeAction();
     virtual void onCollision(Elem*);
     virtual bool blockable();
 };

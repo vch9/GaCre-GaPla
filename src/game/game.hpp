@@ -21,6 +21,7 @@ class Game{
         void print();
 
         void elem_move(Elem*, int, int);
+        void nextTurn();
 };
 
 #endif

@@ -4,7 +4,7 @@ Monster::Monster(Game* g, int i, int j): Elem("s", g, i, j){
 
 }
 
-void Monster::action(){
+void Monster::takeAction(){
 
 }
 

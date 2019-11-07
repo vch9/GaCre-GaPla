@@ -68,3 +68,7 @@ void Board::elem_move(Elem* e, int dest_i, int dest_j){
         }
     }
 }
+
+vector<Elem *> Board::getElems() {
+    return actionnables_elems;
+}

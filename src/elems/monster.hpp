@@ -7,7 +7,7 @@ class Monster: public Elem{
     public:
         Monster(Game*, int, int);
 
-        void action();
+        void takeAction();
         void onCollision(Elem*);
         bool blockable();
 };
