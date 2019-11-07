@@ -6,7 +6,7 @@
 
 class Diamond: public Elem{
     public:
-        Diamond(Game* g);
+        Diamond(Game* g, int, int);
         void onCollision(Elem *);
 };
 

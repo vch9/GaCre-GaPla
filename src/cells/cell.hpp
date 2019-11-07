@@ -8,11 +8,11 @@ class Elem;
 
 class Cell{
   private:
-    const int pos_i;
-    const int pos_j;
     Elem* elem;
   public:
-    Cell(const int, const int, Elem*);
+    Cell(Elem*);
+    void setElem(Elem*);
+    Elem* getElem();
     friend ostream& operator<<(ostream& , const Cell&);
 
 };

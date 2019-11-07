@@ -9,6 +9,7 @@ class Monster: public MovingElem{
 
         void action();
         void onCollision(Elem*);
+        bool blockable();
 };
 
 #endif

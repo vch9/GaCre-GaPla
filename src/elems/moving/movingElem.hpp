@@ -11,11 +11,11 @@ enum Directions{
 
 class MovingElem : public Elem{
     private:
-        int pos_i;
-        int pos_j;
+        int offset_movement;
+
     public:
-        MovingElem(string, Game*, int, int);
-        void move(Directions d);
+        MovingElem(string, Game*, int, int, int);
+        void move(Directions);
 };
 
 #endif

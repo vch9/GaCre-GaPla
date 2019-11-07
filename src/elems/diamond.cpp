@@ -1,6 +1,6 @@
 #include "diamond.hpp"
 
-Diamond::Diamond(Game* g): Elem("$", g){
+Diamond::Diamond(Game* g, int i, int j): Elem("$", g, i, j){
 
 }
 

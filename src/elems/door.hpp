@@ -7,9 +7,10 @@ class Door: public Elem{
     private:
         bool opened;
     public:
-        Door(Game*);
+        Door(Game*, int, int);
         bool isOpened();
         void open();
+        bool blockable();
 };
 
 #endif

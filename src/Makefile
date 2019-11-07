@@ -1,5 +1,5 @@
 cc = g++
-flags = --std=c++11 -Wall
+flags = --std=c++11 -Wall -g
 obj = main.o board/board.o cells/cell.o \
 elems/elem.o elems/wall.o elems/door.o elems/diamond.o elems/charge.o \
 elems/moving/movingElem.o elems/moving/player.o elems/moving/monster.o \
@@ -15,7 +15,7 @@ main: $(objs)
 
 obj/main.o: board/board.hpp cells/cell.hpp elems/elem.hpp elems/wall.hpp
 
-obj/board/board.o: board/board.hpp
+obj/board/board.o: board/board.hpp elems/elem.hpp
 
 obj/cells/cell.o: cells/cell.hpp elems/elem.hpp
 
@@ -33,7 +33,7 @@ obj/files/generate_board.o: files/generate_board.hpp cells/cell.hpp board/board.
 elems/wall.hpp elems/charge.hpp elems/diamond.hpp elems/door.hpp elems/moving/player.hpp elems/moving/monster.hpp
 
 
-obj/game/game.o: game/game.hpp board/board.hpp
+obj/game/game.o: game/game.hpp board/board.hpp elems/elem.hpp
 
 obj/%.o: %.cpp
 	$(cc) $(flags) -o $@ -c $<

@@ -47,31 +47,31 @@ Board* GenerateBoard::createBoard(Game* g, string path){
         }
         else{
             if(c=='X'){
-                b->setCell(i, j, new Cell(i, j, new Wall(g)));
+                b->setCell(i, j, new Cell(new Wall(g, i, j)));
             }
             else if(c=='-'){
-                b->setCell(i, j, new Cell(i, j, new Door(g)));
+                b->setCell(i, j, new Cell(new Door(g, i, j)));
             }
             else if(c=='+'){
-                b->setCell(i, j, new Cell(i, j, new Door(g)));
+                b->setCell(i, j, new Cell(new Door(g, i, j)));
             }
             else if(c=='$'){
-                b->setCell(i, j, new Cell(i, j, new Diamond(g)));
+                b->setCell(i, j, new Cell(new Diamond(g, i, j)));
             }
             else if(c=='*'){
-                b->setCell(i, j, new Cell(i, j, new Charge(g)));
+                b->setCell(i, j, new Cell(new Charge(g, i, j)));
             }
             else if(c=='s'){
-                b->setCell(i, j, new Cell(i, j, new Monster(g, i, j)));
+                Elem* e = new Monster(g, i, j);
+                b->addActionnableElem(e);
+                b->setCell(i, j, new Cell(e));
             }
             else{
-                b->setCell(i, j, new Cell(i, j, nullptr));
+                b->setCell(i, j, new Cell(nullptr));
             }
             j++;
         }
     }
-
-    b->print();
 
     return b;
 }
