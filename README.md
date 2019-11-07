@@ -1,7 +1,7 @@
 # GaCre GaPla - Project C++
 # LOA Université de Paris
 
-By Benjamin viau and Valentin Chaboche, supervised by Jean-Baptiste Yunès
+By Benjamin Viau and Valentin Chaboche, supervised by Jean-Baptiste Yunès
 
 ## Purpose
 The purpose of this project is to develop two applications:
