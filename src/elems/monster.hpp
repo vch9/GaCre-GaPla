@@ -1,9 +1,9 @@
 #ifndef MONSTER
 #define MONSTER
 
-#include "movingElem.hpp"
+#include "elem.hpp"
 
-class Monster: public MovingElem{
+class Monster: public Elem{
     public:
         Monster(Game*, int, int);
 

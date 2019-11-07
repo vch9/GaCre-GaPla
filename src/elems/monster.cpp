@@ -1,6 +1,6 @@
 #include "monster.hpp"
 
-Monster::Monster(Game* g, int i, int j): MovingElem("s", g, i, j, 1){
+Monster::Monster(Game* g, int i, int j): Elem("s", g, i, j){
 
 }
 
