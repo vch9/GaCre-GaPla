@@ -14,6 +14,7 @@ class Board{
     Board(const int, const int);
     void setCell(const int, const int, Cell*);
     void print();
+    Cell* getCell(const int, const int);
 };
 
 
