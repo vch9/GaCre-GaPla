@@ -4,6 +4,7 @@
 #include "../elems/elem.hpp"
 #include <iostream>
 using namespace std;
+class Elem;
 
 class Cell{
   private:
@@ -12,7 +13,6 @@ class Cell{
     Elem* elem;
   public:
     Cell(const int, const int, Elem*);
-    string toString();
     friend ostream& operator<<(ostream& , const Cell&);
 
 };

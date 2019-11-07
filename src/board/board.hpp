@@ -2,7 +2,7 @@
 #define BOARD
 
 #include "../cells/cell.hpp"
-#include <vector>
+class Cell;
 
 class Board{
   private:

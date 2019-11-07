@@ -2,14 +2,20 @@
 #define ELEM
 
 #include <iostream>
+#include "../board/board.hpp"
 using namespace std;
+class Board;
 
 class Elem{
-  private:
+  protected:
     string symb;
+    Board* board;
+
   public:
-    Elem(const string);
+    Elem(const string, Board*);
     friend ostream& operator<<(ostream& , const Elem&);
+    string getSymb();
+    void action();
 };
 
 #endif
