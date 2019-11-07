@@ -5,7 +5,7 @@ Board::Board(const int l, const int c): lines(l), cols(c){
     this->board = new Cell*[l*c];
     for(int i=0; i<l; i++){
         for(int j=0; j<c; j++){
-            Board::board[i*j] = nullptr;
+            Board::board[i*Board::lines+j] = nullptr;
         }
     }
 }
