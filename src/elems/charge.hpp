@@ -6,7 +6,7 @@
 
 class Charge: public Elem{
     public:
-        Charge(Game*);
+        Charge(Game*, int, int);
         void onCollision(Elem*);
 };
 

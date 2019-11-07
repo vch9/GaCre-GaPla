@@ -1,6 +1,6 @@
 #include "door.hpp"
 
-Door::Door(Game* g): Elem("-", g){
+Door::Door(Game* g, int i, int j): Elem("-", g, i, j){
     Door::opened = false;
 }
 
@@ -10,4 +10,8 @@ bool Door::isOpened(){
 
 void Door::open(){
     Door::opened = true;
+}
+
+bool Door::blockable(){
+    return !Door::opened;
 }

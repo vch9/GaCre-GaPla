@@ -1,10 +1,9 @@
 #include "player.hpp"
 
 
-Player::Player(Game* g, int i, int j, int t, int hp): MovingElem("J", g, i, j){
+Player::Player(Game* g, int i, int j, int t): MovingElem("J", g, i, j, 1){
     Player::diamonds = 0;
     Player::teleports = t;
-    Player::hp = hp;
 }
 
 void Player::addDiamond(int d){
@@ -62,4 +61,8 @@ void Player::action(){
 
 void Player::onCollision(Elem* e){
 
+}
+
+bool Player::blockable(){
+    return true;
 }
