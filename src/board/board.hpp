@@ -17,7 +17,7 @@ class Board{
     const int lines;
     const int cols;
     /* We keep a reference on the actionnables elems, we may lose in memory optimisation.
-    But we win in speed optimisation, because we don't use action() on every cell, on every elem
+    But we win in speed optimisation, because we don't use takeAction() on every cell, on every elem
     */
     vector<Elem*> actionnables_elems;
 
@@ -30,6 +30,7 @@ class Board{
     void setElemOnCell(const int, const int, Elem*);
     void print();
     Cell* getCell(const int, const int);
+    vector<Elem*> getElems();
 
     void elem_move(Elem*, int, int);
 };

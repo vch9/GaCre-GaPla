@@ -14,7 +14,7 @@ string Elem::getSymb(){
     return Elem::symb;
 }
 
-void Elem::action(){
+void Elem::takeAction(){
     // does nothing;
 }
 
