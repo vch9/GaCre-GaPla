@@ -1,5 +1,4 @@
 #include "player.hpp"
-#include "../game/Control.hpp"
 
 
 Player::Player(Game* g, int i, int j, int t): Elem("J", g, i, j){
@@ -30,6 +29,8 @@ void Player::takeAction(){
         case S:
             return;
         case D:
+            return;
+        default:
             return;
 
     }
