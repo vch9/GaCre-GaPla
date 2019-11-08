@@ -2,6 +2,7 @@
 #define PLAYER
 
 #include "elem.hpp"
+#include "../game/control.hpp"
 
 class Player: public Elem{
     private:

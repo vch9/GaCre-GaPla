@@ -1,12 +1,8 @@
-//
-// Created by benjamin on 07/11/2019.
-//
-
 #include <cstdio>
-#include "Control.hpp"
+#include "control.hpp"
 
 KeyCode Control::getKeyDown() {
-//    A modifier si l'on rajoute une api pour capturer les touches du clavier
+    // To modify if we change API for user's input
     char c;
     c= getchar();
     switch (c){
@@ -29,4 +25,6 @@ KeyCode Control::getKeyDown() {
             return D;
             break;
     }
+
+    return V;
 }
