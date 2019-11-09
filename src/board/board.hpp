@@ -19,7 +19,7 @@ class Board{
     /* We keep a reference on the elems, we may lose in memory optimisation.
     But we win in speed optimisation, because we don't use takeAction() on every cell, on every elem
     */
-    vector<Elem*> actionnables_elems;
+    vector<Elem*> elems;
 
   public:
     Board(const int, const int);
@@ -31,7 +31,7 @@ class Board{
     vector<Elem*> getElems();
 
     /* Setters */
-    void addActionnableElem(Elem* e);
+    void addElem(Elem* e);
     void setCell(const int, const int, Cell*);
     void setElemOnCell(const int, const int, Elem*);
 
