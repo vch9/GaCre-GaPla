@@ -9,7 +9,12 @@ game/game.o game/control.o
 
 objs = $(addprefix ./obj/, $(obj))
 
-all: main
+MKDIR_OBJ = mkdir -p obj/ obj/actions obj/board obj/cells obj/elems obj/files obj/game
+
+all: directories main
+
+directories:
+	${MKDIR_OBJ}
 
 main: $(objs)
 	$(cc) -o $@ $^
