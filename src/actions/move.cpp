@@ -6,7 +6,7 @@ Move::Move(int offset): move_offset(offset){
 
 void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
     /* Inside board */
-    if(dest_i>=0 || dest_i<b->getLines() || dest_j>=0 || dest_j<b->getCols()){
+    if(b!=nullptr && (dest_i>=0 || dest_i<b->getLines() || dest_j>=0 || dest_j<b->getCols())){
         Elem* onDest = b->getCell(dest_i, dest_j)->getElem();
 
         /* If an elem is already on the cell we want to move e */
@@ -32,15 +32,30 @@ void Move::move(Game* g, Elem* e, Direction d){
     case TOP:
       elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ());
       break;
+    case TOPLEFT:
+      elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ()-Move::move_offset);
+      break;
+    case TOPRIGHT:
+      elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ()+Move::move_offset);
+      break;
+
     case LEFT:
       elem_move(g->getCurrentBoard(), e, e->getPosI(), e->getPosJ()-Move::move_offset);
       break;
     case RIGHT:
       elem_move(g->getCurrentBoard(), e, e->getPosI(), e->getPosJ()+Move::move_offset);
       break;
-    case BOTTOM:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ());
+
+    case BOT:
+      elem_move(g->getCurrentBoard(), e, e->getPosI()+Move::move_offset, e->getPosJ());
       break;
+    case BOTLEFT:
+      elem_move(g->getCurrentBoard(), e, e->getPosI()+Move::move_offset, e->getPosJ()-Move::move_offset);
+      break;
+    case BOTRIGHT:
+      elem_move(g->getCurrentBoard(), e, e->getPosI()+Move::move_offset, e->getPosJ()+Move::move_offset);
+      break;
+
     default:
       break;
 
