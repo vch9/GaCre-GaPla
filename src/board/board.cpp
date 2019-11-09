@@ -9,7 +9,24 @@ Board::Board(const int l, const int c): lines(l), cols(c), actionnables_elems(){
         }
     }
 }
+/* Getters */
+int Board::getLines(){
+  return Board::lines;
+}
 
+int Board::getCols(){
+  return Board::cols;
+}
+
+Cell* Board::getCell(const int i, const int j){
+    return Board::board[i*Board::cols+j];
+}
+
+vector<Elem *> Board::getElems() {
+    return actionnables_elems;
+}
+
+/* Setters */
 void Board::addActionnableElem(Elem* e){
     Board::actionnables_elems.push_back(e);
 }
@@ -22,7 +39,7 @@ void Board::setElemOnCell(const int i, const int j, Elem* e){
     Board::board[i*Board::cols+j]->setElem(e);
 }
 
-
+/* Methods */
 void Board::print(){
     for(int i=0; i<Board::lines; i++){
         for(int j=0; j<Board::cols; j++){
@@ -37,38 +54,7 @@ void Board::print(){
     }
 }
 
-Cell* Board::getCell(const int i, const int j){
-    return Board::board[i*Board::cols+j];
-}
-
 void Board::move(int dest_i, int dest_j, Elem* e){
     Board::board[e->getPosI()*Board::cols+e->getPosJ()]->setElem(nullptr);
     Board::board[dest_i*Board::cols+dest_j]->setElem(e);
-}
-
-void Board::elem_move(Elem* e, int dest_i, int dest_j){
-    /* Inside board */
-    if(dest_i>=0 || dest_i<Board::lines || dest_j>=0 || dest_j<Board::cols){
-        Elem* onDest = Board::board[dest_i*Board::cols+dest_j]->getElem();
-
-        /* If an elem is already on the cell we want to move e */
-        if(onDest!=nullptr){
-            onDest->onCollision(e);
-            /* If onDest is not blockable */
-            if(!onDest->blockable()){
-                /* e overplace onDest */
-                // delete(onDest);
-
-                move(dest_i, dest_j, e);
-            }
-        }
-        /* Else, we move to the cell */
-        else{
-            move(dest_i, dest_j, e);
-        }
-    }
-}
-
-vector<Elem *> Board::getElems() {
-    return actionnables_elems;
 }

@@ -20,8 +20,8 @@ class Game{
         void add_board(Board*);
         void print();
 
-        void elem_move(Elem*, int, int);
         void nextTurn();
+        Board* getCurrentBoard();
 };
 
 #endif
