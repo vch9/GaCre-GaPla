@@ -24,7 +24,7 @@ void Game::nextTurn() {
 
 Board* Game::getCurrentBoard(){
   if(Game::current_board>0 && Game::current_board<(int)Game::boards.size()){
-    return nullptr;
+    return Game::boards.at(Game::current_board);
   }
-  return Game::boards.at(Game::current_board);
+  return nullptr;
 }
