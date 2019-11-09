@@ -51,10 +51,10 @@ Board* GenerateBoard::createBoard(Game* g, string path){
                 e = new Wall(g, i, j);
             }
             else if(c=='-'){
-                e = new Door(g, i, j);
+                e = new Door(g, i, j, true);
             }
             else if(c=='+'){
-                e = new Door(g, i, j);
+                e = new Door(g, i, j, false);
             }
             else if(c=='$'){
                 e = new Diamond(g, i, j);
