@@ -12,12 +12,12 @@ void Game::print(){
     Game::boards.at(Game::current_board)->print();
 }
 
-void Game::elem_move(Elem* e, int dest_i, int dest_j){
-    Game::boards.at(Game::current_board)->elem_move(e, dest_i, dest_j);
-}
-
 void Game::nextTurn() {
     for (Elem* e : boards.at(current_board)->getElems()){
         e->takeAction();
     }
+}
+
+Board* Game::getCurrentBoard(){
+  return Game::boards.at(Game::current_board);
 }
