@@ -10,6 +10,7 @@ bool Door::isOpened(){
 
 void Door::open(){
     Door::opened = true;
+    Elem::symb = "+";
 }
 
 bool Door::blockable(){
