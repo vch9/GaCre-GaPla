@@ -1,7 +1,7 @@
 #include "board.hpp"
 
 
-Board::Board(const int l, const int c): lines(l), cols(c), actionnables_elems(){
+Board::Board(const int l, const int c): lines(l), cols(c), elems(){
     this->board = new Cell*[l*c];
     for(int i=0; i<l; i++){
         for(int j=0; j<c; j++){
@@ -23,12 +23,12 @@ Cell* Board::getCell(const int i, const int j){
 }
 
 vector<Elem *> Board::getElems() {
-    return actionnables_elems;
+    return elems;
 }
 
 /* Setters */
-void Board::addActionnableElem(Elem* e){
-    Board::actionnables_elems.push_back(e);
+void Board::addElem(Elem* e){
+    Board::elems.push_back(e);
 }
 
 void Board::setCell(const int i, const int j, Cell* c){
