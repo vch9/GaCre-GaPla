@@ -25,7 +25,7 @@ void Player::takeAction(){
 
   char* token = strtok(input, " ");
 
-  if(strncmp(token, "move", 4)==0){
+  if(token && strncmp(token, "move", 4)==0){
     token = strtok(NULL, " ");
 
     Direction d;
