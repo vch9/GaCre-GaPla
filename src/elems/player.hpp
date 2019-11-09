@@ -2,9 +2,12 @@
 #define PLAYER
 
 #include "elem.hpp"
-#include "../game/control.hpp"
+#include "../actions/move.hpp"
+#include <cstring>
+#include <iostream>
+using namespace std;
 
-class Player: public Elem{
+class Player: public Elem, public Move{
     private:
         int diamond_count;
         int teleport_count;

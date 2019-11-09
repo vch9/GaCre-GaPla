@@ -5,7 +5,9 @@
 #include "../game/game.hpp"
 
 enum Direction{
-  TOP, LEFT, RIGHT, BOTTOM
+  TOPLEFT, TOP, TOPRIGHT,
+  LEFT, RIGHT,
+  BOTLEFT, BOT, BOTRIGHT
 };
 
 class Move{
