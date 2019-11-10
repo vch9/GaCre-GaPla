@@ -6,10 +6,8 @@
 #include <vector>
 using namespace std;
 
-
 class Cell;
 class Elem;
-// class MovingElem;
 
 class Board{
   private:
@@ -34,9 +32,12 @@ class Board{
     void addElem(Elem* e);
     void setCell(const int, const int, Cell*);
     void setElemOnCell(const int, const int, Elem*);
+    void removeFromElems(Elem*);
 
     /* Methods */
     void print();
+
+    /* Move elem to (pos_i, pos_j) and changes elem->pos_i elem->pos_j */
     void move(int, int, Elem*);
 };
 

@@ -39,6 +39,18 @@ void Board::setElemOnCell(const int i, const int j, Elem* e){
     Board::board[i*Board::cols+j]->setElem(e);
 }
 
+void Board::removeFromElems(Elem* e ){
+    int offset = 0;
+    for (int i=0; i<(int)Board::elems.size(); i++){
+        Elem* aux = Board::elems.at(i);
+        if(aux->getPosI()==e->getPosI() && aux->getPosJ()==e->getPosJ()){
+            offset = i;
+            break;
+        }
+    }
+    Board::elems.erase(Board::elems.begin()+offset);
+}
+
 /* Methods */
 void Board::print(){
     for(int i=0; i<Board::lines; i++){
@@ -57,4 +69,6 @@ void Board::print(){
 void Board::move(int dest_i, int dest_j, Elem* e){
     Board::board[e->getPosI()*Board::cols+e->getPosJ()]->setElem(nullptr);
     Board::board[dest_i*Board::cols+dest_j]->setElem(e);
+    e->setPosI(dest_i);
+    e->setPosJ(dest_j);
 }

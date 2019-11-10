@@ -4,6 +4,7 @@
 #include "../elems/elem.hpp"
 #include <iostream>
 using namespace std;
+
 class Elem;
 
 class Cell{

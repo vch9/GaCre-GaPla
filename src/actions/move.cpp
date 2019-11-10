@@ -5,6 +5,12 @@ Move::Move(int offset): move_offset(offset){
 }
 
 void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
+    /* Secure bound values */
+    if(dest_i < 0) dest_i = 0;
+    if(dest_i >= b->getLines()) dest_i = b->getLines()-1;
+    if(dest_j < 0) dest_j = 0;
+    if(dest_j >= b->getCols()) dest_j = b->getCols()-1;
+    
     /* Inside board */
     if(b!=nullptr && (dest_i>=0 || dest_i<b->getLines() || dest_j>=0 || dest_j<b->getCols())){
         Elem* onDest = b->getCell(dest_i, dest_j)->getElem();

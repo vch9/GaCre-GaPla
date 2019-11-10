@@ -1,7 +1,7 @@
 #include "player.hpp"
 
 
-Player::Player(Game* g, int i, int j, int t): Elem("J", g, i, j), Move(1){
+Player::Player(Game* g, int t): Elem("J", g, -1, -1), Move(1){
     Player::diamond_count = 0;
     Player::teleport_count = t;
 }
@@ -71,10 +71,11 @@ void Player::takeAction(){
   takeAction();
 }
 
-void Player::onCollision(Elem* e){
-
-}
-
 bool Player::blockable(){
     return true;
+}
+
+void Player::print(){
+  cout << "Teleports: " << Player::teleport_count << endl;
+  cout << "Diamonds: " << Player::diamond_count << endl;
 }

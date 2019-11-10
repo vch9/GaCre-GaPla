@@ -12,13 +12,30 @@ class Player: public Elem, public Move{
         int diamond_count;
         int teleport_count;
     public:
-        Player(Game* g, int pos_i, int pos_j, int teleports);
+        /* Constructors */
+        Player(Game* g, int teleports);
+
+        /* Setters */
         void addDiamond(int);
         void addTeleport();
 
-        void onCollision(Elem*);
+        /* Waits for user's input,
+            move topleft,
+            move top,
+            move topright,
+            move left,
+            move right,
+            move botleft,
+            move bot,
+            move botright
+        */
         void takeAction();
+
+        /* Player is blockable */
         bool blockable();
+
+        /* Display diamonds, teleports, health.. */
+        void print();
 };
 
 #endif

@@ -3,12 +3,17 @@
 
 #include "../elems/elem.hpp"
 #include "../game/game.hpp"
+#include "../board/board.hpp"
 
 enum Direction{
   TOPLEFT, TOP, TOPRIGHT,
   LEFT, RIGHT,
   BOTLEFT, BOT, BOTRIGHT
 };
+
+class Board;
+class Elem;
+class Game;
 
 class Move{
   public:
