@@ -2,11 +2,11 @@
 #define CHARGE
 
 #include "elem.hpp"
-#include "moving/player.hpp"
+#include "player.hpp"
 
 class Charge: public Elem{
     public:
-        Charge(Game*);
+        Charge(Game*, int, int);
         void onCollision(Elem*);
 };
 

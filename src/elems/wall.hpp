@@ -5,7 +5,8 @@
 
 class Wall : public Elem{
     public:
-        Wall(Game* g);
+        Wall(Game* g, int, int);
+        bool blockable();
 };
 
 #endif

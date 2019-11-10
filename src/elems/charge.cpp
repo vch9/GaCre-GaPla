@@ -1,6 +1,6 @@
 #include "charge.hpp"
 
-Charge::Charge(Game* g): Elem("*", g){
+Charge::Charge(Game* g, int i, int j): Elem("*", g, i, j){
     
 }
 

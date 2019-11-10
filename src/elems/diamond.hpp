@@ -2,11 +2,11 @@
 #define DIAMOND
 
 #include "elem.hpp"
-#include "moving/player.hpp"
+#include "player.hpp"
 
 class Diamond: public Elem{
     public:
-        Diamond(Game* g);
+        Diamond(Game* g, int, int);
         void onCollision(Elem *);
 };
 
