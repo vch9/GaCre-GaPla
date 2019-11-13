@@ -1,7 +1,7 @@
 #include "player.hpp"
 
 
-Player::Player(Game* g, int t): Elem("J", g, -1, -1), Move(1){
+Player::Player(Game* g, int t): Elem("J", g, -1, -1), Move(){
     Player::diamond_count = 0;
     Player::teleport_count = t;
 }
@@ -25,12 +25,20 @@ void Player::takeAction(){
 
   char* token = strtok(input, " ");
 
-  if(token && strncmp(token, "move", 4)==0){
+  PickedAction action;
+
+  if(token && (strncmp(token, "move", 4)==0 || strncmp(token, "teleport", 8)==0) ){
+    if(strncmp(token, "move", 4)==0){
+      action=WALK;
+    }
+    else if(strncmp(token, "teleport", 8)==0){
+      action=TELEPORT;
+    }
     token = strtok(NULL, " ");
 
     Direction d;
     if(!token){
-      cout << "Need move precision" << endl;
+      cout << "Need action precision" << endl;
       takeAction();
       return;
     }
@@ -63,9 +71,16 @@ void Player::takeAction(){
       takeAction();
       return;
     }
-    Move::move(Elem::game, this, d);
+
+    if(action==WALK){
+      Move::move(Elem::game, this, d, OFFSET_WALK);
+    }
+    if(action==TELEPORT){
+      Move::move(Elem::game, this, d, OFFSET_TP);
+    }
     return;
   }
+  
 
   cout << "Wrong command for player" << endl;
   takeAction();

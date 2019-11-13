@@ -1,8 +1,6 @@
 #include "move.hpp"
 
-Move::Move(int offset): move_offset(offset){
-
-}
+/* Methods */
 
 void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
     /* Secure bound values */
@@ -33,33 +31,33 @@ void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
     }
 }
 
-void Move::move(Game* g, Elem* e, Direction d){
+void Move::move(Game* g, Elem* e, Direction d, int offset){
   switch(d){
     case TOP:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ());
+      elem_move(g->getCurrentBoard(), e, e->getPosI()-offset, e->getPosJ());
       break;
     case TOPLEFT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ()-Move::move_offset);
+      elem_move(g->getCurrentBoard(), e, e->getPosI()-offset, e->getPosJ()-offset);
       break;
     case TOPRIGHT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()-Move::move_offset, e->getPosJ()+Move::move_offset);
+      elem_move(g->getCurrentBoard(), e, e->getPosI()-offset, e->getPosJ()+offset);
       break;
 
     case LEFT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI(), e->getPosJ()-Move::move_offset);
+      elem_move(g->getCurrentBoard(), e, e->getPosI(), e->getPosJ()-offset);
       break;
     case RIGHT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI(), e->getPosJ()+Move::move_offset);
+      elem_move(g->getCurrentBoard(), e, e->getPosI(), e->getPosJ()+offset);
       break;
 
     case BOT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()+Move::move_offset, e->getPosJ());
+      elem_move(g->getCurrentBoard(), e, e->getPosI()+offset, e->getPosJ());
       break;
     case BOTLEFT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()+Move::move_offset, e->getPosJ()-Move::move_offset);
+      elem_move(g->getCurrentBoard(), e, e->getPosI()+offset, e->getPosJ()-offset);
       break;
     case BOTRIGHT:
-      elem_move(g->getCurrentBoard(), e, e->getPosI()+Move::move_offset, e->getPosJ()+Move::move_offset);
+      elem_move(g->getCurrentBoard(), e, e->getPosI()+offset, e->getPosJ()+offset);
       break;
 
     default:
