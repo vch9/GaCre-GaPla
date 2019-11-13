@@ -11,11 +11,11 @@ Game::Game(vector<Board*> boards){
 }
 
 /* Setters */
-void Game::add_board(Board* b){
+void Game::addBoard(Board* b){
     Game::boards.push_back(b);
 }
 
-void Game::set_player(Elem* e){
+void Game::setPlayer(Elem* e){
   Game::player = e;
 }
 

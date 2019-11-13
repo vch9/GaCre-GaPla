@@ -42,8 +42,8 @@ class Game{
         Game(vector<Board*> boards);
 
         /* Setters */
-        void add_board(Board*);
-        void set_player(Elem*);
+        void addBoard(Board*);
+        void setPlayer(Elem*);
 
         /* Getters */    
         Board* getCurrentBoard();
