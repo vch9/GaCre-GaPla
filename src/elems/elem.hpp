@@ -17,6 +17,9 @@ class Elem{
     Elem(const string symb, Game*, int pos_i, int pos_j);
 
   public:
+    /* Destructors */
+    virtual ~Elem();
+
     /* Getters */
     int getPosI();
     int getPosJ();

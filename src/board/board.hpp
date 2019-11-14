@@ -21,6 +21,7 @@ class Board{
 
   public:
     Board(const int, const int);
+    virtual ~Board();
 
     /* Getters */
     int getLines();

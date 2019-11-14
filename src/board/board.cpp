@@ -9,6 +9,20 @@ Board::Board(const int l, const int c): lines(l), cols(c), elems(){
         }
     }
 }
+
+Board::~Board(){
+    for(int i=0; i<Board::lines; i++){
+        for(int j=0; j<Board::cols; j++){
+            delete(Board::board[i*Board::cols+j]);
+        }
+        // delete(Board::board[i]);
+    }
+    delete(Board::board);
+    for(int i=0; i<(int)Board::elems.size(); i++){
+        delete(Board::elems.at(i));
+    }
+    Board::elems.clear();
+}
 /* Getters */
 int Board::getLines(){
   return Board::lines;

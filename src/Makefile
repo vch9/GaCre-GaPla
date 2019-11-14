@@ -1,5 +1,5 @@
 cc = g++
-flags = --std=c++11 -Wall -g
+flags = --std=c++11 -Wall -ggdb3
 obj = \
 main.o board/board.o cells/cell.o \
 elems/elem.o elems/wall.o elems/door.o elems/diamond.o elems/charge.o \
@@ -18,7 +18,7 @@ directories:
 	${MKDIR_OBJ}
 
 main: $(objs)
-	$(cc) -o $@ $^
+	$(cc) -o $@ $^ $(flags)
 
 obj/main.o: board/board.hpp cells/cell.hpp elems/elem.hpp elems/wall.hpp
 

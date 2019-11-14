@@ -41,6 +41,9 @@ class Game{
         Game();
         Game(vector<Board*> boards);
 
+        /* Destructors */
+        virtual ~Game();
+
         /* Setters */
         void addBoard(Board*);
         void setPlayer(Elem*);

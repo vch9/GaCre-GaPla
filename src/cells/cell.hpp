@@ -11,9 +11,19 @@ class Cell{
   private:
     Elem* elem;
   public:
+    /* Constructors */
     Cell(Elem*);
+
+    /* Destructors */
+    virtual ~Cell();
+
+    /* Setters */
     void setElem(Elem*);
+
+    /* Getters */
     Elem* getElem();
+
+    /* Operator */
     friend ostream& operator<<(ostream& , const Cell&);
 
 };

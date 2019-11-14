@@ -1,13 +1,22 @@
 #include "game.hpp"
 
 /* Constructors */
-Game::Game(): boards(), current_board(0){
+Game::Game(): boards(), current_board(0), player(nullptr){
 
 }
 
 Game::Game(vector<Board*> boards){
   Game::boards=boards;
   Game::current_board = 0;
+}
+
+/* Destructors */
+Game::~Game(){
+  for(int i=0; i<(int)Game::boards.size(); i++){
+    delete(Game::boards.at(i));
+  }
+  Game::boards.clear();
+  delete(Game::player);
 }
 
 /* Setters */
