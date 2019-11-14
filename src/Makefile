@@ -36,7 +36,7 @@ obj/actions/action.o: actions/action.hpp game/game.hpp elems/elem.hpp
 
 obj/elems/moving/movingElem.o: elems/elem.hpp
 obj/elems/player.o: elems/elem.hpp elems/player.hpp actions/move.hpp
-obj/elems/monster.o: elems/elem.hpp elems/monster.hpp
+obj/elems/monster.o: elems/elem.hpp elems/monster.hpp cells/cell.hpp actions/move.hpp
 
 obj/actions/move.o: actions/move.hpp elems/elem.hpp game/game.hpp board/board.hpp
 

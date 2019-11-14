@@ -27,6 +27,10 @@ Board* Game::getCurrentBoard(){
   return nullptr;
 }
 
+Elem* Game::getPlayer(){
+  return Game::player;
+}
+
 /* Methods */
 
 /* private */
@@ -140,12 +144,11 @@ void Game::play(){
   /* while !finish iterates on the boards */
   while(!finish()){
 
-    Game::boards.at(Game::current_board)->addElem(Game::player);
-
     /* while !boardOver iterates on the board */
     int aux_board = Game::current_board;
     while(aux_board==Game::current_board){
       print();
+      Game::player->takeAction();
       nextTurn();
     }
 
@@ -165,9 +168,6 @@ void Game::openDoors(){
 }
 
 void Game::changeBoard(bool next){
-  /* We remove the player from board->elems() */
-  Game::boards.at(Game::current_board)->removeFromElems(Game::player);
-  
   /* We take back the player from the current board */
   Game::boards.at(Game::current_board)->setElemOnCell(Game::player->getPosI(), Game::player->getPosJ(), nullptr);
   

@@ -47,6 +47,7 @@ class Game{
 
         /* Getters */    
         Board* getCurrentBoard();
+        Elem* getPlayer();
 
         /* Methods */
 
