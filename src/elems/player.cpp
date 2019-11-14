@@ -76,11 +76,17 @@ void Player::takeAction(){
       Move::move(Elem::game, this, d, OFFSET_WALK);
     }
     if(action==TELEPORT){
-      Move::move(Elem::game, this, d, OFFSET_TP);
+      if(Player::teleport_count==0){
+        cout << "You don't have any teleport bonus!" << endl;
+      }
+      else{
+        Player::teleport_count--;
+        Move::move(Elem::game, this, d, OFFSET_TP);
+      }
     }
     return;
   }
-  
+
 
   cout << "Wrong command for player" << endl;
   takeAction();
