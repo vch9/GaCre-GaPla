@@ -12,8 +12,8 @@ class Health{
 
     /* Methods */
 
-    /* Health reduces with dmg */
-    void reduceHealth(int dmg);
+    /* Health reduces with dmg, returns false if current_hp > 0 */
+    bool reduceHealth(int dmg);
 
     /* Add health with heal */
     void heal(int h);

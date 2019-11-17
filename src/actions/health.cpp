@@ -5,8 +5,13 @@ Health::Health(int hp): hp_max(hp), current_hp(hp){
 
 }
 
-void Health::reduceHealth(int dmg){
-  Health::current_hp = (Health::current_hp - dmg) % Health::hp_max;
+bool Health::reduceHealth(int dmg){
+  Health::current_hp = Health::current_hp - dmg;
+  if(Health::current_hp < 0){
+    Health::current_hp = 0;
+    return true;
+  }
+  return false;
 }
 
 void Health::heal(int h){

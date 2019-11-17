@@ -4,8 +4,7 @@ obj = \
 main.o board/board.o cells/cell.o \
 elems/elem.o elems/wall.o elems/door.o elems/diamond.o elems/charge.o \
 elems/player.o elems/monster.o \
-actions/move.o \
-actions/health.o \
+actions/move.o actions/health.o actions/damage.o \
 files/generate_board.o \
 game/game.o game/control.o
 
@@ -41,6 +40,7 @@ obj/elems/monster.o: elems/elem.hpp elems/monster.hpp cells/cell.hpp actions/mov
 
 obj/actions/move.o: actions/move.hpp elems/elem.hpp game/game.hpp board/board.hpp
 obj/actions/health.o: actions/health.hpp
+obj/actions/damage.o: actions/damage.hpp actions/health.hpp elems/elem.hpp
 
 obj/files/generate_board.o: files/generate_board.hpp cells/cell.hpp board/board.hpp game/game.hpp \
 elems/wall.hpp elems/charge.hpp elems/diamond.hpp elems/door.hpp elems/player.hpp elems/monster.hpp
