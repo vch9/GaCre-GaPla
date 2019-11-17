@@ -9,7 +9,7 @@ void game_file_creator::create_game_file(string out, vector<string> board_file_n
 
 //    checking file extension
     if(!std::regex_match(out,std::regex{".*\\.game"})){
-        cout << "Board file must end with \".game\"" <<endl;
+        cout << "Game file must end with \".game\"" <<endl;
         return;
     }
 
@@ -17,8 +17,8 @@ void game_file_creator::create_game_file(string out, vector<string> board_file_n
         ifstream src(board_name, ios::in);
 
         if(check_board(src)){
-            dst << '#' << endl << src.rdbuf();
-            cout << "board " << std::to_string(board_counter) << " added" << endl;
+            dst << '#' << endl << board_name<<endl;
+            cout << "board " << std::to_string(board_counter++) << " added" << endl;
         }
         else {
             cout << "error with board " << std::to_string(board_counter)<< endl;

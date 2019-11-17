@@ -5,6 +5,7 @@
 #include <board.hpp>
 #include<fstream>
 #include<regex>
+
 class game_file_creator {
 public:
 //    this method write on "out" all the boards content in "board_file_name" separate by #
