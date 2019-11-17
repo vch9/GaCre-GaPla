@@ -15,7 +15,7 @@ Game::~Game(){
   for(int i=0; i<(int)Game::boards.size(); i++){
     delete(Game::boards.at(i));
   }
-  Game::boards.clear();
+  
   delete(Game::player);
 }
 

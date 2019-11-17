@@ -7,9 +7,6 @@ Cell::Cell(Elem* e): elem(e) {
 
 /* Destuctors */
 Cell::~Cell(){
-    if(Cell::elem!=nullptr){
-        delete(Cell::elem);
-    }
 }
 
 /* Setters */
