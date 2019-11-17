@@ -1,7 +1,7 @@
 #include "player.hpp"
 
 
-Player::Player(Game* g, int t): Elem("J", g, -1, -1), Move(){
+Player::Player(Game* g, int t, int hp): Elem("J", g, -1, -1), Move(), Health(hp){
     Player::diamond_count = 0;
     Player::teleport_count = t;
 }

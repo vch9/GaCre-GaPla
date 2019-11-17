@@ -5,6 +5,7 @@ main.o board/board.o cells/cell.o \
 elems/elem.o elems/wall.o elems/door.o elems/diamond.o elems/charge.o \
 elems/player.o elems/monster.o \
 actions/move.o \
+actions/health.o \
 files/generate_board.o \
 game/game.o game/control.o
 
@@ -35,10 +36,11 @@ obj/elems/charge.o: elems/elem.hpp elems/charge.hpp elems/player.hpp
 obj/actions/action.o: actions/action.hpp game/game.hpp elems/elem.hpp
 
 obj/elems/moving/movingElem.o: elems/elem.hpp
-obj/elems/player.o: elems/elem.hpp elems/player.hpp actions/move.hpp
+obj/elems/player.o: elems/elem.hpp elems/player.hpp actions/move.hpp actions/health.hpp
 obj/elems/monster.o: elems/elem.hpp elems/monster.hpp cells/cell.hpp actions/move.hpp
 
 obj/actions/move.o: actions/move.hpp elems/elem.hpp game/game.hpp board/board.hpp
+obj/actions/health.o: actions/health.hpp
 
 obj/files/generate_board.o: files/generate_board.hpp cells/cell.hpp board/board.hpp game/game.hpp \
 elems/wall.hpp elems/charge.hpp elems/diamond.hpp elems/door.hpp elems/player.hpp elems/monster.hpp

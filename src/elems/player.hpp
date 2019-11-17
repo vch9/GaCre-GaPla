@@ -3,6 +3,7 @@
 
 #include "elem.hpp"
 #include "../actions/move.hpp"
+#include "../actions/health.hpp"
 #include <cstring>
 #include <iostream>
 using namespace std;
@@ -17,14 +18,14 @@ enum PickedAction{
 #define OFFSET_WALK 1
 #define OFFSET_TP 5
 
-class Player: public Elem, public Move{
+class Player: public Elem, public Move, public Health{
     private:
         int diamond_count;
         int teleport_count;
 
     public:
         /* Constructors */
-        Player(Game* g, int teleports);
+        Player(Game* g, int teleports, int hp);
 
         /* Setters */
         void addDiamond(int);
