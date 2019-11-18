@@ -3,12 +3,10 @@
 
 #include "elem.hpp"
 #include "../game/game.hpp"
-#include "../cells/cell.hpp"
 #include "../actions/move.hpp"
 #include "../actions/damage.hpp"
-#include <queue>
+#include "../common/dijkstra.hpp"
 #include <tuple>
-#include <climits>
 
 class Elem;
 
