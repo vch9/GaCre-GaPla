@@ -1,7 +1,7 @@
 #include "player.hpp"
 
 
-Player::Player(Game* g, int i, int j, int t): Elem("J", g, i, j), Move(1){
+Player::Player(Game* g, int t, int hp): Elem("J", g, -1, -1), Move(), Health(hp){
     Player::diamond_count = 0;
     Player::teleport_count = t;
 }
@@ -25,12 +25,20 @@ void Player::takeAction(){
 
   char* token = strtok(input, " ");
 
-  if(token && strncmp(token, "move", 4)==0){
+  PickedAction action;
+
+  if(token && (strncmp(token, "move", 4)==0 || strncmp(token, "teleport", 8)==0) ){
+    if(strncmp(token, "move", 4)==0){
+      action=WALK;
+    }
+    else if(strncmp(token, "teleport", 8)==0){
+      action=TELEPORT;
+    }
     token = strtok(NULL, " ");
 
     Direction d;
     if(!token){
-      cout << "Need move precision" << endl;
+      cout << "Need action precision" << endl;
       takeAction();
       return;
     }
@@ -63,18 +71,52 @@ void Player::takeAction(){
       takeAction();
       return;
     }
-    Move::move(Elem::game, this, d);
+
+    if(action==WALK){
+      Move::move(Elem::game, this, d, OFFSET_WALK);
+    }
+    if(action==TELEPORT){
+      if(Player::teleport_count==0){
+        cout << "You don't have any teleport bonus!" << endl;
+      }
+      else{
+        Player::teleport_count--;
+        Move::move(Elem::game, this, d, OFFSET_TP);
+      }
+    }
     return;
   }
+
 
   cout << "Wrong command for player" << endl;
   takeAction();
 }
 
-void Player::onCollision(Elem* e){
-
-}
-
 bool Player::blockable(){
     return true;
+}
+
+void Player::print(){
+  cout << "Teleports: " << Player::teleport_count << endl;
+  cout << "Diamonds: " << Player::diamond_count << endl;
+}
+
+bool Player::isActive(){
+  return Health::current_hp > 0;
+}
+
+/* Virtual from health */
+bool Health::reduceHealth(int dmg){
+  Health::current_hp = Health::current_hp - dmg;
+  if(Health::current_hp < 0){
+    Health::current_hp = 0;
+    return true;
+  }
+  return false;
+}
+
+void Health::heal(int h){
+  Health::current_hp += h;
+  if(Health::current_hp > Health::hp_max)
+    Health::current_hp = Health::hp_max;
 }

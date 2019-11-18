@@ -68,7 +68,9 @@ Board* GenerateBoard::createBoard(Game* g, string path){
             else{
                 e = nullptr;
             }
-            b->addElem(e);
+            if(e){
+                b->addElem(e);
+            }
             b->setCell(i, j, new Cell(e));
             j++;
         }

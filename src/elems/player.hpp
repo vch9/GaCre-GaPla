@@ -3,22 +3,54 @@
 
 #include "elem.hpp"
 #include "../actions/move.hpp"
+#include "../actions/health.hpp"
 #include <cstring>
 #include <iostream>
 using namespace std;
 
-class Player: public Elem, public Move{
+enum PickedAction{
+    WALK,
+    TELEPORT
+};
+
+
+/* Define how much cells the player can move with a simple movement, and with the teleportation */
+#define OFFSET_WALK 1
+#define OFFSET_TP 5
+
+class Player: public Elem, public Move, public Health{
     private:
         int diamond_count;
         int teleport_count;
+
     public:
-        Player(Game* g, int pos_i, int pos_j, int teleports);
+        /* Constructors */
+        Player(Game* g, int teleports, int hp);
+
+        /* Setters */
         void addDiamond(int);
         void addTeleport();
 
-        void onCollision(Elem*);
+        /* Waits for user's input,
+            move topleft,
+            move top,
+            move topright,
+            move left,
+            move right,
+            move botleft,
+            move bot,
+            move botright
+        */
         void takeAction();
+
+        /* Player is blockable */
         bool blockable();
+
+        /* Display diamonds, teleports, health.. */
+        void print();
+
+        /* Player is alive if it still has hp left */
+        bool isActive();
 };
 
 #endif
