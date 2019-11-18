@@ -11,6 +11,8 @@ game/game.o game/control.o
 
 objs = $(addprefix ./obj/, $(obj))
 
+libs = -lncurses
+
 MKDIR_OBJ = mkdir -p obj/ obj/actions obj/board obj/cells obj/elems obj/files obj/game obj/common
 
 all: directories main
@@ -19,7 +21,7 @@ directories:
 	${MKDIR_OBJ}
 
 main: $(objs)
-	$(cc) -o $@ $^ $(flags)
+	$(cc) -o $@ $^ $(flags) $(libs)
 
 obj/main.o: board/board.hpp cells/cell.hpp elems/elem.hpp elems/wall.hpp
 
