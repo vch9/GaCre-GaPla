@@ -48,6 +48,9 @@ class Player: public Elem, public Move, public Health{
 
         /* Display diamonds, teleports, health.. */
         void print();
+
+        /* Player is alive if it still has hp left */
+        bool isActive();
 };
 
 #endif

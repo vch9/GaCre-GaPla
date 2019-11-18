@@ -5,27 +5,32 @@
 #include "../game/game.hpp"
 #include "../cells/cell.hpp"
 #include "../actions/move.hpp"
+#include "../actions/damage.hpp"
 #include <queue>
 #include <tuple>
 #include <climits>
 
 class Elem;
 
-class Monster: public Elem, public Move{
-    public:
-        /* Constructors */
-        Monster(Game*, int, int);
+class Monster: public Elem, public Move, public Damage{
+  private:
+    /* Get closer to the player */
+    void moveToPlayer();
 
-        /* Methods */
+  public:
+      /* Constructors */
+      Monster(Game*, int pos_i, int pos_j);
 
-        /* Moves towards the player */
-        void takeAction();
+      /* Methods */
 
-        /* Apply damage on the player */
-        void onCollision(Elem*);
+      /* Moves towards the player */
+      void takeAction();
 
-        /* Monster is blockable */
-        bool blockable();
+      /* Apply damage on the player */
+      void onCollision(Elem*);
+
+      /* Monster is blockable */
+      bool blockable();
 };
 
 #endif

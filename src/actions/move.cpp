@@ -8,7 +8,7 @@ void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
     if(dest_i >= b->getLines()) dest_i = b->getLines()-1;
     if(dest_j < 0) dest_j = 0;
     if(dest_j >= b->getCols()) dest_j = b->getCols()-1;
-    
+
     /* Inside board */
     if(b!=nullptr && (dest_i>=0 || dest_i<b->getLines() || dest_j>=0 || dest_j<b->getCols())){
         Elem* onDest = b->getCell(dest_i, dest_j)->getElem();
@@ -16,11 +16,11 @@ void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
         /* If an elem is already on the cell we want to move e */
         if(onDest!=nullptr){
             onDest->onCollision(e);
+            e->onCollision(onDest);
+
             /* If onDest is not blockable */
             if(!onDest->blockable()){
                 /* e overplace onDest */
-                // delete(onDest);
-
                 b->move(dest_i, dest_j, e);
             }
         }

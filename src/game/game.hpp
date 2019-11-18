@@ -6,6 +6,7 @@
 #include "../board/board.hpp"
 #include "../elems/door.hpp"
 #include "../elems/wall.hpp"
+#include "../actions/health.hpp"
 
 using namespace std;
 
@@ -48,7 +49,7 @@ class Game{
         void addBoard(Board*);
         void setPlayer(Elem*);
 
-        /* Getters */    
+        /* Getters */
         Board* getCurrentBoard();
         Elem* getPlayer();
 

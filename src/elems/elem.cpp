@@ -8,7 +8,7 @@ Elem::Elem(const string c, Game* g, int i, int j) : symb(c), game(g) {
 
 /* Destructors */
 Elem::~Elem(){
-    
+
 }
 
 ostream& operator<<(ostream &os, const Elem &e){
@@ -54,4 +54,8 @@ bool Elem::blockable(){
 
 void Elem::print(){
     // nothing to print
+}
+
+bool Elem::isActive(){
+  return true;
 }

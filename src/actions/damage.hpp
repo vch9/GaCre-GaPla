@@ -3,6 +3,7 @@
 
 #include "health.hpp"
 #include "../elems/elem.hpp"
+#include "../elems/player.hpp"
 
 class Damage{
   private:

@@ -100,3 +100,23 @@ void Player::print(){
   cout << "Teleports: " << Player::teleport_count << endl;
   cout << "Diamonds: " << Player::diamond_count << endl;
 }
+
+bool Player::isActive(){
+  return Health::current_hp > 0;
+}
+
+/* Virtual from health */
+bool Health::reduceHealth(int dmg){
+  Health::current_hp = Health::current_hp - dmg;
+  if(Health::current_hp < 0){
+    Health::current_hp = 0;
+    return true;
+  }
+  return false;
+}
+
+void Health::heal(int h){
+  Health::current_hp += h;
+  if(Health::current_hp > Health::hp_max)
+    Health::current_hp = Health::hp_max;
+}

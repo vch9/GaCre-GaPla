@@ -44,6 +44,9 @@ class Elem{
 
     /* Print a description */
     virtual void print();
+
+    /* Return true if the elem is active */
+    virtual bool isActive();
 };
 
 #endif

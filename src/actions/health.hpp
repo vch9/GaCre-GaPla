@@ -1,8 +1,11 @@
 #ifndef HEALTH
 #define HEALTH
 
+#include <iostream>
+using namespace std;
+
 class Health{
-  private:
+  protected:
     int hp_max;
     int current_hp;
 
@@ -13,10 +16,10 @@ class Health{
     /* Methods */
 
     /* Health reduces with dmg, returns false if current_hp > 0 */
-    bool reduceHealth(int dmg);
+    virtual bool reduceHealth(int dmg);
 
     /* Add health with heal */
-    void heal(int h);
+    virtual void heal(int h);
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "monster.hpp"
 
 /* Constructors */
-Monster::Monster(Game* g, int i, int j): Elem("s", g, i, j), Move(){
+Monster::Monster(Game* g, int i, int j): Elem("s", g, i, j), Move(), Damage(100){
 
 }
 
@@ -81,12 +81,11 @@ pair<int, int> dijkstra(Board* b, pair<int, int> s, pair<int, int> dest){
     pred_i=test.first;
     pred_j=test.second;
   }
+  // cout << "pred_i: " << pred_i << ", pred_j: " << pred_j << endl;
   return make_pair(pred_i, pred_j);
 }
 
-/* Methods */
-
-void Monster::takeAction(){
+void Monster::moveToPlayer(){
   pair<int, int> dest = dijkstra(Elem::game->getCurrentBoard(), make_pair(Elem::pos_i, Elem::pos_j), make_pair(Elem::game->getPlayer()->getPosI(), Elem::game->getPlayer()->getPosJ()));
   int dest_i = dest.first;
   int dest_j = dest.second;
@@ -110,7 +109,6 @@ void Monster::takeAction(){
       return;
     }
   }
-  
   else if(dest_i == Elem::pos_i-1){ /* top */
     if(dest_j == Elem::pos_j-1){ /* top left */
       d = TOPLEFT;
@@ -136,11 +134,19 @@ void Monster::takeAction(){
 
   }
   Move::move(Elem::game, this, d, 1);
+}
 
+/* Methods */
+
+void Monster::takeAction(){
+  moveToPlayer();
 }
 
 void Monster::onCollision(Elem *e){
-  //Todo: apply damage on player
+  if(e->getSymb()=="J"){
+    cout << "Nom nom monster" << endl;
+    applyDamage(e);
+  }
 }
 
 bool Monster::blockable(){

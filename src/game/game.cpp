@@ -15,7 +15,7 @@ Game::~Game(){
   for(int i=0; i<(int)Game::boards.size(); i++){
     delete(Game::boards.at(i));
   }
-  
+
   delete(Game::player);
 }
 
@@ -63,7 +63,8 @@ void Game::print(){
 void Game::nextTurn() {
   if(Game::current_board>=0 && Game::current_board<(int)Game::boards.size()){
     for (Elem* e : boards.at(current_board)->getElems()){
-      e->takeAction();
+      if(e->isActive())
+        e->takeAction();
     }
   }
 }
@@ -79,7 +80,7 @@ void Game::setPlayerSpawn(bool entry){
         int lines = b->getLines();
         int dest_i, dest_j;
         if(door->getPosI()==0){
-            /* 
+            /*
             XX+XXX
             X J  X
             XXXXXX
@@ -88,7 +89,7 @@ void Game::setPlayerSpawn(bool entry){
             dest_j = door->getPosJ();
         }
         else if(door->getPosJ()==0){
-            /* 
+            /*
             XXXXXX
             +J   X
             XXXXXX
@@ -100,9 +101,9 @@ void Game::setPlayerSpawn(bool entry){
             /*
             XXXXXX
             X J  X
-            XX+XXX 
+            XX+XXX
             */
-            
+
             dest_i = lines - 2;
             dest_j = door->getPosJ();
         }
@@ -143,9 +144,6 @@ void Game::remove_door(){
 
 /* public */
 void Game::play(){
-  if(Game::current_board>=(int)Game::boards.size()){
-    cout << "No more boards to play" << endl;
-  }
   setPlayerSpawn(true);
   /* we remove the entry door on the first board */
   remove_door();
@@ -157,6 +155,11 @@ void Game::play(){
     int aux_board = Game::current_board;
     while(aux_board==Game::current_board){
       print();
+      if(!Game::player->isActive()){ /* Player is dead */
+        cout << "You died :( " << endl;
+        Game::boards.at(Game::current_board)->setElemOnCell(Game::player->getPosI(), Game::player->getPosJ(), nullptr);
+        return;
+      }
       Game::player->takeAction();
       nextTurn();
     }
@@ -179,7 +182,7 @@ void Game::openDoors(){
 void Game::changeBoard(bool next){
   /* We take back the player from the current board */
   Game::boards.at(Game::current_board)->setElemOnCell(Game::player->getPosI(), Game::player->getPosJ(), nullptr);
-  
+
 
   if(next){
     Game::current_board++;
