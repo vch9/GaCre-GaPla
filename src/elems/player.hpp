@@ -4,8 +4,11 @@
 #include "elem.hpp"
 #include "../actions/move.hpp"
 #include "../actions/health.hpp"
+#include "../view/control.hpp"
+#include "../view/view.hpp"
 #include <cstring>
 #include <iostream>
+#include <tuple>
 using namespace std;
 
 enum PickedAction{
@@ -51,6 +54,9 @@ class Player: public Elem, public Move, public Health{
 
         /* Player is alive if it still has hp left */
         bool isActive();
+
+        /* Return diamonds, teleports in a string etc.. */
+        string to_string();
 };
 
 #endif

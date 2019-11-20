@@ -52,10 +52,10 @@ bool Elem::blockable(){
     return false;
 }
 
-void Elem::print(){
-    // nothing to print
-}
-
 bool Elem::isActive(){
   return true;
+}
+
+string Elem::to_string(){
+  return "";
 }

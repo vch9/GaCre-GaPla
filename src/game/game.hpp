@@ -7,6 +7,8 @@
 #include "../elems/door.hpp"
 #include "../elems/wall.hpp"
 #include "../actions/health.hpp"
+#include "../view/view.hpp"
+#include <cstring>
 
 using namespace std;
 
