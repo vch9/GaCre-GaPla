@@ -2,15 +2,17 @@
 #define MONSTER
 
 #include "elem.hpp"
+#include "player.hpp"
 #include "../game/game.hpp"
 #include "../actions/move.hpp"
-#include "../actions/damage.hpp"
+#include "../actions/health.hpp"
 #include "../common/dijkstra.hpp"
 #include <tuple>
+#include "../view/view.hpp"
 
 class Elem;
 
-class Monster: public Elem, public Move, public Damage{
+class Monster: public Elem, public Move, public Health{
   private:
     /* Get closer to the player */
     void moveToPlayer();
@@ -29,6 +31,9 @@ class Monster: public Elem, public Move, public Damage{
 
       /* Monster is blockable */
       bool blockable();
+
+      /* Takes damage */
+      bool reduceHealth(int dmg);
 };
 
 #endif

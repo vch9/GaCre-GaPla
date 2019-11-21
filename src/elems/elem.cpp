@@ -4,6 +4,7 @@
 Elem::Elem(const string c, Game* g, int i, int j) : symb(c), game(g) {
     Elem::pos_i = i;
     Elem::pos_j = j;
+    Elem::active = true;
 }
 
 /* Destructors */
@@ -53,7 +54,11 @@ bool Elem::blockable(){
 }
 
 bool Elem::isActive(){
-  return true;
+  return Elem::active;
+}
+
+void Elem::switchActive(){
+  Elem::active = !Elem::active;
 }
 
 string Elem::to_string(){

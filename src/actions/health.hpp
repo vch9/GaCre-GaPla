@@ -16,10 +16,10 @@ class Health{
     /* Methods */
 
     /* Health reduces with dmg, returns false if current_hp > 0 */
-    virtual bool reduceHealth(int dmg);
+    bool reduceHealth(int dmg);
 
     /* Add health with heal */
-    virtual void heal(int h);
+    void heal(int h);
 };
 
 #endif

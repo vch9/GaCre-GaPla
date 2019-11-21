@@ -12,6 +12,7 @@ class Elem{
     Game* game;
     int pos_i;
     int pos_j;
+    bool active;
 
     /* Constructors */
     Elem(const string symb, Game*, int pos_i, int pos_j);
@@ -43,7 +44,10 @@ class Elem{
     virtual bool blockable();
 
     /* Return true if the elem is active */
-    virtual bool isActive();
+    bool isActive();
+
+    /* active <- !active  */
+    void switchActive();
 
     /* Return a description of the elem */
     virtual string to_string();
