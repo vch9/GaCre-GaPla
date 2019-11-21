@@ -11,11 +11,15 @@ Player::Player(Game* g, int t, int hp):
 }
 
 void Player::addDiamond(int d){
-    Player::diamond_count+=d;
+  Player::diamond_count+=d;
 }
 
 void Player::addTeleport(){
-    Player::teleport_count++;
+  Player::teleport_count++;
+}
+
+void Player::addArrow(int nb){
+  Player::arrow_count = Player::arrow_count+nb;
 }
 
 void onCollision(Elem* e){

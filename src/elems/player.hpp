@@ -41,6 +41,7 @@ class Player: public Elem, public Move, public Health{
       /* Setters */
       void addDiamond(int);
       void addTeleport();
+      void addArrow(int);
 
       /* Waits for user's input,
           move topleft,

@@ -11,6 +11,7 @@
 #include "../elems/door.hpp"
 #include "../elems/player.hpp"
 #include "../elems/monster.hpp"
+#include "../elems/quiver.hpp"
 
 #include <iostream>
 #include <fstream>

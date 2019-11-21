@@ -1,17 +1,17 @@
-#ifndef CHARGE
-#define CHARGE
+#ifndef QUIVER
+#define QUIVER
 
 #include "elem.hpp"
 #include "player.hpp"
 
-class Charge: public Elem{
+class Quiver: public Elem{
     public:
       /* Constructor */
-      Charge(Game*, int, int);
+      Quiver(Game*, int, int);
 
       /* Methods */
 
-      /* Add a telepor bonus to the player */
+      /* Add 5 arrows to the player */
       void onCollision(Elem*);
 };
 
