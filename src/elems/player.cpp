@@ -18,91 +18,90 @@ void onCollision(Elem* e){
 
 }
 
+pair<PickedAction, Direction> direction(){
+  KeyCode key = Control::getKeyDown();
+
+  Direction d;
+  PickedAction a;
+
+  switch(key){
+    case Z:
+      d = TOP;
+      a = WALK;
+      break;
+    case Q:
+      d = LEFT;
+      a = WALK;
+      break;
+    case S:
+      d = BOT;
+      a = WALK;
+      break;
+    case D:
+      d = RIGHT;
+      a = WALK;
+      break;
+    case A:
+      d = TOPLEFT;
+      a = WALK;
+      break;
+    case E:
+      d = TOPRIGHT;
+      a = WALK;
+      break;
+    case W:
+      d = BOTLEFT;
+      a = WALK;
+      break;
+    case C:
+      d = BOTRIGHT;
+      a = WALK;
+      break;
+    case T:
+      a = TELEPORT;
+      d = BOT; /* default */
+      break;
+    default:
+      View::print("Wrong action, try again!\n");
+      return direction();
+    }
+  return make_pair(a, d);
+}
+
 void Player::takeAction(){
-  char input[256];
-  cout << "Pick your action" << endl;
-  cin.getline(input, 256);
+  pair<PickedAction, Direction> p = direction();
 
-  char* token = strtok(input, " ");
-
-  PickedAction action;
-
-  if(token && (strncmp(token, "move", 4)==0 || strncmp(token, "teleport", 8)==0) ){
-    if(strncmp(token, "move", 4)==0){
-      action=WALK;
-    }
-    else if(strncmp(token, "teleport", 8)==0){
-      action=TELEPORT;
-    }
-    token = strtok(NULL, " ");
-
-    Direction d;
-    if(!token){
-      cout << "Need action precision" << endl;
-      takeAction();
+  switch(p.first){
+    case WALK:
+      Move::move(Elem::game, this, p.second, OFFSET_WALK);
       return;
-    }
-    else if(strncmp(token, "topleft", 7)==0){
-      d=TOPLEFT;
-    }
-    else if(strncmp(token, "topright", 8)==0){
-      d=TOPRIGHT;
-    }
-    else if(strncmp(token, "top", 3)==0){
-      d=TOP;
-    }
-    else if(strncmp(token, "left", 4)==0){
-      d=LEFT;
-    }
-    else if(strncmp(token, "right", 5)==0){
-      d=RIGHT;
-    }
-    else if(strncmp(token, "botright", 8)==0){
-      d=BOTRIGHT;
-    }
-    else if(strncmp(token, "botleft", 7)==0){
-      d=BOTLEFT;
-    }
-    else if(strncmp(token, "bot", 3)==0){
-      d=BOT;
-    }
-    else{
-      cout << "Wrong move" << endl;
-      takeAction();
-      return;
-    }
-
-    if(action==WALK){
-      Move::move(Elem::game, this, d, OFFSET_WALK);
-    }
-    if(action==TELEPORT){
+    case TELEPORT:
       if(Player::teleport_count==0){
-        cout << "You don't have any teleport bonus!" << endl;
+        View::print("You don't have any teleport bonus!\n");
+        takeAction();
+        return;
       }
-      else{
-        Player::teleport_count--;
-        Move::move(Elem::game, this, d, OFFSET_TP);
-      }
-    }
-    return;
+      Player::teleport_count--;
+      View::print("What direction do you want to teleport\n");
+      pair<PickedAction, Direction> prim = direction();
+      Move::move(Elem::game, this, prim.second, OFFSET_TP);
+      return;
   }
-
-
-  cout << "Wrong command for player" << endl;
-  takeAction();
 }
 
 bool Player::blockable(){
     return true;
 }
 
-void Player::print(){
-  cout << "Teleports: " << Player::teleport_count << endl;
-  cout << "Diamonds: " << Player::diamond_count << endl;
-}
-
 bool Player::isActive(){
   return Health::current_hp > 0;
+}
+
+string Player::to_string(){
+  string s = "";
+  s += "Teleports: " + std::to_string(Player::teleport_count) + "\n";
+  s += "Diamonds: " + std::to_string(Player::diamond_count) + "\n";
+  return s;
 }
 
 /* Virtual from health */

@@ -52,12 +52,15 @@ bool Game::boardOver(){
 }
 
 void Game::print(){
+  View::clear_window();
   if(Game::current_board>=0 && Game::current_board<(int)Game::boards.size()){
-    Game::boards.at(Game::current_board)->print();
+    View::printBoard(Game::boards.at(Game::current_board));
   }
-  cout << "Niveau " << Game::current_board+1 << endl;
-  Game::player->print();
-
+  string niveau = "Niveau ";
+  niveau += to_string(Game::current_board+1);
+  niveau += "\n";
+  niveau += Game::player->to_string();
+  View::print(niveau);
 }
 
 void Game::nextTurn() {
@@ -144,6 +147,7 @@ void Game::remove_door(){
 
 /* public */
 void Game::play(){
+  View::init();
   setPlayerSpawn(true);
   /* we remove the entry door on the first board */
   remove_door();
@@ -156,17 +160,18 @@ void Game::play(){
     while(aux_board==Game::current_board){
       print();
       if(!Game::player->isActive()){ /* Player is dead */
-        cout << "You died :( " << endl;
+        // cout << "You died :( " << endl;
         Game::boards.at(Game::current_board)->setElemOnCell(Game::player->getPosI(), Game::player->getPosJ(), nullptr);
+        View::close(Game::boards.at(Game::current_board), "You died :-(");
         return;
       }
       Game::player->takeAction();
       nextTurn();
     }
-
   }
+  string end_message = "Congratulations, you beat the game with:\n" + Game::player->to_string();
 
-  cout << "Congratulations you beat the game" << endl;
+  View::close(Game::boards.at(Game::current_board-1), end_message);
 }
 
 void Game::openDoors(){

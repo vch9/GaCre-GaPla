@@ -42,11 +42,11 @@ class Elem{
     /* Indicate if we can move over _this */
     virtual bool blockable();
 
-    /* Print a description */
-    virtual void print();
-
     /* Return true if the elem is active */
     virtual bool isActive();
+
+    /* Return a description of the elem */
+    virtual string to_string();
 };
 
 #endif
