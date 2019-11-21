@@ -59,7 +59,10 @@ void Monster::moveToPlayer(){
 /* Methods */
 
 void Monster::takeAction(){
-  moveToPlayer();
+  int prob = rand()%100;
+  if(prob<66){ /* 2/3 to move */
+    moveToPlayer();
+  }
 }
 
 void Monster::onCollision(Elem *e){
