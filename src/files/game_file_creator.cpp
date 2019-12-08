@@ -1,7 +1,7 @@
 
 
 
-#include "game_file_creator.h"
+#include "game_file_creator.hpp"
 
 void game_file_creator::create_game_file(string out, vector<string> board_file_name) {
     int board_counter(0);
@@ -35,7 +35,7 @@ void update_item_count(string s, int& exit_door, int& start_door, int& diams){
 
 bool game_file_creator::check_board(ifstream& stream) {
     int exit_door_count(0),start_door_count(0), diams_count(0);
-    int  width(0);
+    long unsigned int  width(0);
 
     string buf;
 

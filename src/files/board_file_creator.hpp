@@ -2,8 +2,8 @@
 // Created by benjamin on 17/11/2019.
 //
 
-#ifndef GACRE_GAPLA_BOARD_FILE_CREATOR_H
-#define GACRE_GAPLA_BOARD_FILE_CREATOR_H
+#ifndef GACRE_GAPLA_BOARD_FILE_CREATOR_HPP
+#define GACRE_GAPLA_BOARD_FILE_CREATOR_HPP
 
 #include <ncurses.h>
 #include <iostream>
@@ -25,4 +25,4 @@ private:
 };
 
 
-#endif //GACRE_GAPLA_BOARD_FILE_CREATOR_H
+#endif //GACRE_GAPLA_BOARD_FILE_CREATOR_HPP

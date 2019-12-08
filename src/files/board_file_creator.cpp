@@ -2,7 +2,7 @@
 // Created by benjamin on 17/11/2019.
 //
 
-#include "board_file_creator.h"
+#include "board_file_creator.hpp"
 
 
 #define MAX_HEIGHT 50
@@ -120,6 +120,8 @@ void board_file_creator::start_board_creator(std::ofstream& file_stream) {
                             exit_j = j;
                             ++currentPhase;
                         }
+                        break;
+                    case OTHER:
                         break;
                 }
                 break;

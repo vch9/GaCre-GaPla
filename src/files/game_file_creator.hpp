@@ -1,11 +1,14 @@
 
-#ifndef GACRE_GAPLA_GAME_FILE_CREATOR_H
-#define GACRE_GAPLA_GAME_FILE_CREATOR_H
+#ifndef GACRE_GAPLA_GAME_FILE_CREATOR_HPP
+#define GACRE_GAPLA_GAME_FILE_CREATOR_HPP
 
-#include <board.hpp>
+#include <vector>
+#include <string>
 #include<fstream>
 #include<regex>
-
+#include <fstream>
+#include <iostream>
+using namespace std;
 class game_file_creator {
 public:
 //    this method write on "out" all the boards content in "board_file_name" separate by #
@@ -16,4 +19,4 @@ public:
 };
 
 
-#endif //GACRE_GAPLA_GAME_FILE_CREATOR_H
+#endif //GACRE_GAPLA_GAME_FILE_CREATOR_HPP
