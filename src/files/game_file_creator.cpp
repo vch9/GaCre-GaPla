@@ -63,5 +63,5 @@ bool game_file_creator::check_board(ifstream& stream) {
 
     stream.clear();
     stream.seekg(0, ios::beg);
-    return exit_door_count ==1 && start_door_count == 1 && diams_count <=1;
+    return exit_door_count ==1 && start_door_count == 1;// && diams_count <=1;
 }
