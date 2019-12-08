@@ -1,25 +1,27 @@
-#include <game_file_creator.h>
-#include <string>
-#include <vector>
-
 using namespace std;
-// #include "cases/case.hpp"
-#include <ncurses.h>
-#include <board_file_creator.h>
+#include <iostream>
+#include "game/game.hpp"
+#include "board/board.hpp"
+#include "files/generate_board.hpp"
+#include "actions/health.hpp"
 
-int main(int argc, char *argv[]){
-//
-//    string board("/home/benjamin/Documents/GaCre-GaPla/src/test.board");
-//    string board2("/home/benjamin/Documents/GaCre-GaPla/src/test2.board");
-//    ifstream f(board);
-//    if (f.is_open())
-//        std::cout << f.rdbuf();
-//
-//    string out("oui.game");
-//
-//    game_file_creator::create_game_file(out , vector<string>{board,board2});
+int main(){
+    string path1 = "../files/example.board";
+    string path2 = "../files/example2.board";
 
-//BOARD CREATOR
-    board_file_creator::start_board_creator();
-    return 1;
+    Game* game = new Game();
+
+    Board* b1 = GenerateBoard::createBoard(game, path1);
+    Board* b2 = GenerateBoard::createBoard(game, path2);
+
+    Elem* player = new Player(game, 1, 100);
+
+    game->addBoard(b1);
+    game->addBoard(b2);
+
+    game->setPlayer(player);
+
+    game->play();
+
+    delete(game);
 }
