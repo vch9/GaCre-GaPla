@@ -16,7 +16,7 @@ board_file_creator.o: board_file_creator.hpp
 
 generate_board.o: generate_board.hpp ../game/game.hpp ../board/board.hpp ../cells/cell.hpp \
 ../elems/wall.hpp ../elems/charge.hpp ../elems/diamond.hpp ../elems/door.hpp ../elems/player.hpp \
-../elems/monster.hpp ../elems/quiver.hpp
+../elems/monster.hpp ../elems/quiver.hpp ../elems/trap.hpp
 
 %.o: %.cpp
 	$(cc) $(FLAGS) -o $@ -c $<

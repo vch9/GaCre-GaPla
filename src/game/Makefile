@@ -9,7 +9,7 @@ links = \
 ../common/dijkstra.o \
 ../elems/arrow.o ../elems/charge.o ../elems/diamond.o \
 ../elems/door.o ../elems/elem.o ../elems/monster.o \
-../elems/quiver.o ../elems/wall.o ../elems/player.o \
+../elems/quiver.o ../elems/wall.o ../elems/player.o ../elems/trap.o \
 ../files/generate_board.o \
 ../view/control.o ../view/view.o
 

@@ -141,9 +141,12 @@ void board_file_creator::start_board_creator(std::ofstream& file_stream) {
                     case 'q':
                         finished = true;
                         break;
+                    case 'o':
+                        board[i][j] = 'o';
+                        break;
                     case ':':
                         board[i][j] = ':';
-                        break
+                        break;
                     default:
                         break;
                 }
@@ -175,12 +178,13 @@ void board_file_creator::print_command_board(WINDOW *window, phase phase) {
             mvwprintw(window,4,1,"Place the exit door\n ENTER to confirm");
             break;
         case OTHER:
-            mvwprintw(window,4,1,"Place items\n"
+            mvwprintw(window,4,1,
                            " D -> DIAMOND\n"
                            " S -> MONSTER\n"
                            " * -> TELEPORTER\n"
                            " X -> WALL\n"
                            " E -> VOID\n"
+                           " O -> TRAP\n"
                            " Q to close the editor"
                            );
 

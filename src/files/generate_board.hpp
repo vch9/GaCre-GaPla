@@ -12,6 +12,7 @@
 #include "../elems/player.hpp"
 #include "../elems/monster.hpp"
 #include "../elems/quiver.hpp"
+#include "../elems/trap.hpp"
 
 #include <iostream>
 #include <fstream>

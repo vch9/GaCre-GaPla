@@ -68,6 +68,9 @@ Board* GenerateBoard::createBoard(Game* g, string path){
           else if(c=='s'){
             e = new Monster(g, i, j);
           }
+          else if(c=='o'){
+            e = new Trap(g, i, j);
+          }
           else{
             e = nullptr;
           }

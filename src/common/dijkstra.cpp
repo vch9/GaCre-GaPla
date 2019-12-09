@@ -53,7 +53,7 @@ pair<int, int> Dijkstra::dijkstra(Board* b, pair<int, int> s, pair<int, int> des
       if(x>=0 && x<rows && y>=0 && y<cols){
         Cell* c = b->getCell(x, y);
         Elem* e = c->getElem();
-        if(e!=nullptr && (!e->blockable() || e->getSymb()!="J")){
+        if(e!=nullptr && (e->blockable() && e->getSymb()!="J")){
           // nothing
         }
         else if(!visited[x][y] && 1+u.second < distance[x][y]){
