@@ -1,13 +1,23 @@
+cc = g++
 LIBS = -lncurses
 FLAGS = --std=c++11 -Wall
+obj = main_game_creator.o game_file_creator.o board_file_creator.o generate_board.o
 
+gc : $(obj)
+	$(cc) -o $@ main_game_creator.o game_file_creator.o board_file_creator.o  $(LIBS) $(FLAGS)
 
-creator : game_file_creator.o board_file_creator.o
-	g++ main_game_creator.cpp game_file_creator.cpp board_file_creator.cpp $(LIBS) $(FLAGS) -o gc
+main_game_creator.o: game_file_creator.hpp board_file_creator.hpp
 
 game_file_creator.o: game_file_creator.hpp
-	g++ -c game_file_creator.cpp -o game_file_creator.o
 
 board_file_creator.o: board_file_creator.hpp
-	g++ -c board_file_creator.cpp -o board_file_creator.o
 
+generate_board.o: generate_board.hpp ../game/game.hpp ../board/board.hpp ../cells/cell.hpp \
+../elems/wall.hpp ../elems/charge.hpp ../elems/diamond.hpp ../elems/door.hpp ../elems/player.hpp \
+../elems/monster.hpp ../elems/quiver.hpp
+
+%.o: %.cpp
+	$(cc) $(FLAGS) -o $@ -c $<
+clean:
+	rm *.o
+	rm gc

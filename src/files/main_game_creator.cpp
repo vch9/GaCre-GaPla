@@ -1,10 +1,6 @@
-//
-// Created by benjamin on 08/12/2019.
-//
-
-
 #include "board_file_creator.hpp"
 #include "game_file_creator.hpp"
+
 using namespace std;
 
 void create_board(int argc, char **argv);
@@ -29,8 +25,6 @@ int main(int argc, char *argv[]){
         cerr << "unknown parameter" << endl;
         return -1;
     }
-
-
 }
 
 void create_game(int argc, char **argv) {
