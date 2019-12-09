@@ -1,7 +1,7 @@
 #include "monster.hpp"
 
 /* Constructors */
-Monster::Monster(Game* g, int i, int j): Elem("s", g, i, j), Move(), Damage(100){
+Monster::Monster(Game* g, int i, int j): Elem("s", g, i, j), Move(), Health(50){
 
 }
 
@@ -59,16 +59,28 @@ void Monster::moveToPlayer(){
 /* Methods */
 
 void Monster::takeAction(){
-  moveToPlayer();
+  int prob = rand()%100;
+  if(prob<66){ /* 2/3 to move */
+    moveToPlayer();
+  }
 }
 
 void Monster::onCollision(Elem *e){
   if(e->getSymb()=="J"){
-    cout << "Nom nom monster" << endl;
-    applyDamage(e);
+    View::print("Nom nom monster\n");
+    ((Player*)e)->reduceHealth(100);
   }
 }
 
 bool Monster::blockable(){
     return true;
+}
+
+bool Monster::reduceHealth(int dmg){
+  bool dead = Health::reduceHealth(dmg);
+  if(dead){
+    Elem::switchActive();
+    Elem::game->getCurrentBoard()->getCell(Elem::pos_i, Elem::pos_j)->setElem(nullptr);
+  }
+  return dead;
 }

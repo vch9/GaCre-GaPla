@@ -147,6 +147,7 @@ void Game::remove_door(){
 
 /* public */
 void Game::play(){
+  srand (time(NULL));
   View::init();
   setPlayerSpawn(true);
   /* we remove the entry door on the first board */

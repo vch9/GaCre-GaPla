@@ -46,33 +46,36 @@ Board* GenerateBoard::createBoard(Game* g, string path){
             j=0;
         }
         else{
-            Elem* e;
-            if(c=='X'){
-                e = new Wall(g, i, j);
-            }
-            else if(c=='-'){
-                e = new Door(g, i, j, true);
-            }
-            else if(c=='+'){
-                e = new Door(g, i, j, false);
-            }
-            else if(c=='$'){
-                e = new Diamond(g, i, j);
-            }
-            else if(c=='*'){
-                e = new Charge(g, i, j);
-            }
-            else if(c=='s'){
-                e = new Monster(g, i, j);
-            }
-            else{
-                e = nullptr;
-            }
-            if(e){
-                b->addElem(e);
-            }
-            b->setCell(i, j, new Cell(e));
-            j++;
+          Elem* e;
+          if(c=='X'){
+            e = new Wall(g, i, j);
+          }
+          else if(c=='-'){
+            e = new Door(g, i, j, true);
+          }
+          else if(c=='+'){
+            e = new Door(g, i, j, false);
+          }
+          else if(c==':'){
+            e = new Quiver(g, i, j);
+          }
+          else if(c=='$'){
+            e = new Diamond(g, i, j);
+          }
+          else if(c=='*'){
+            e = new Charge(g, i, j);
+          }
+          else if(c=='s'){
+            e = new Monster(g, i, j);
+          }
+          else{
+            e = nullptr;
+          }
+          if(e){
+            b->addElem(e);
+          }
+          b->setCell(i, j, new Cell(e));
+          j++;
         }
     }
 

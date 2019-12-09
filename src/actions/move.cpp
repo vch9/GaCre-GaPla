@@ -14,13 +14,13 @@ void Move::elem_move(Board* b, Elem* e, int dest_i, int dest_j){
         Elem* onDest = b->getCell(dest_i, dest_j)->getElem();
 
         /* If an elem is already on the cell we want to move e */
-        if(onDest!=nullptr){
+        if(onDest!=nullptr && onDest->isActive() && e->isActive()){
             onDest->onCollision(e);
             e->onCollision(onDest);
 
             /* If onDest is not blockable */
-            if(!onDest->blockable()){
-                /* e overplace onDest */
+            if(!onDest->blockable() && e->getSymb()=="J"){
+                /* e overplace onDest, and only the player can overplace something */
                 b->move(dest_i, dest_j, e);
             }
         }
