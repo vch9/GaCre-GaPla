@@ -1,7 +1,3 @@
-//
-// Created by benjamin on 17/11/2019.
-//
-
 #include "board_file_creator.hpp"
 
 
@@ -21,11 +17,6 @@ phase operator++(phase& p ){
 void board_file_creator::start_board_creator(std::ofstream& file_stream) {
 //    NCURSES CONFIGURATION
     initscr();
-
-//    mousemask(BUTTON1_PRESSED, nullptr);
-
-
-//    print_board(Board *board);
 
     int height(0), width(0);
     char s_height [200];
@@ -48,7 +39,6 @@ void board_file_creator::start_board_creator(std::ofstream& file_stream) {
             width = std::stoi(str_width);
 
         }catch(std::exception const & e) {
-            printw( "NAN\n");
             refresh();
         };
     }
@@ -151,6 +141,9 @@ void board_file_creator::start_board_creator(std::ofstream& file_stream) {
                     case 'q':
                         finished = true;
                         break;
+                    case ':':
+                        board[i][j] = ':';
+                        break
                     default:
                         break;
                 }

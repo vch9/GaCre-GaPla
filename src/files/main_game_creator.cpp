@@ -30,13 +30,15 @@ int main(int argc, char *argv[]){
 void create_game(int argc, char **argv) {
     vector<string> boards{};
     for (int i = 2; i < argc; ++i) {
-        boards.emplace_back(argv[i]);
+      std::string toadd = "./boards/"+std::string(argv[i]);
+      cout << toadd << endl;
+      boards.emplace_back(toadd);
     }
 
 
     const string& out(argv[1]);
 
-    game_file_creator::create_game_file(out , boards);
+    game_file_creator::create_game_file("./games/"+out , boards);
 
 
 }
@@ -51,7 +53,7 @@ void create_board(int argc, char **argv) {
         return;
     }
 
-    ofstream dst(board_name, ios::out);
+    ofstream dst("./boards/"+board_name, ios::out);
     board_file_creator::start_board_creator(dst);
 
     cout<< board_name <<" created."<< endl;

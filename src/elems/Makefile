@@ -1,6 +1,6 @@
 cc = g++
 flags = --std=c++11 -Wall -g
-obj = elem.o wall.o door.o diamond.o charge.o arrow.o player.o monster.o
+obj = elem.o wall.o door.o diamond.o charge.o arrow.o player.o monster.o quiver.o
 
 build: $(obj)
 

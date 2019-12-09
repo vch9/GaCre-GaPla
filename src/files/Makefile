@@ -4,6 +4,8 @@ FLAGS = --std=c++11 -Wall
 obj = main_game_creator.o game_file_creator.o board_file_creator.o generate_board.o
 
 gc : $(obj)
+	mkdir -p ../../boards/
+	mkdir -p ../../games/
 	$(cc) -o $@ main_game_creator.o game_file_creator.o board_file_creator.o  $(LIBS) $(FLAGS)
 
 main_game_creator.o: game_file_creator.hpp board_file_creator.hpp
