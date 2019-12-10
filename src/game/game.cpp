@@ -56,11 +56,11 @@ void Game::print(){
   if(Game::current_board>=0 && Game::current_board<(int)Game::boards.size()){
     View::printBoard(Game::boards.at(Game::current_board));
   }
-  string niveau = "Niveau ";
-  niveau += to_string(Game::current_board+1);
-  niveau += "\n";
-  niveau += Game::player->to_string();
-  View::print(niveau);
+  string stage = "Stage ";
+  stage += to_string(Game::current_board+1);
+  stage += "\n";
+  stage += Game::player->to_string();
+  View::print(stage);
 }
 
 void Game::nextTurn() {
