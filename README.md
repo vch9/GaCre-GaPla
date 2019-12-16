@@ -12,7 +12,7 @@ The purpose of this project is to develop two applications:
 
 To compile the project, you must follow this instructions:
 ```sh
-  $ git clone git@github.com:Valzou/GaCre-GaPla.git
+  $ git clone git@github.com:vch9/GaCre-GaPla.git
   $ cd GaCre-GaPla
   $ make
 ```
