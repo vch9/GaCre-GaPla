@@ -19,10 +19,19 @@ using namespace std;
 
 void send(int s, char* msg, int len){
   if(send(s, msg, len, 0) == -1){
-    printf("Error send\n");
-    close(s);
-    exit(1);
   }
+}
+
+void send_request_list(bool board, int s){
+  char* msg = (char*)malloc(sizeof(char)*2);
+  if(board)
+    msg[0] = 5;
+  else
+    msg[0] = 6;
+  msg[1] = 0;
+
+  send(s, msg, 2);
+  free(msg);
 }
 
 void disconnect(int s){
@@ -123,6 +132,39 @@ int main(int argc, char* argv[]){
     }
     if(strncmp("-board", argv[2], sizeof("-board"))==0){
       send_board_game(true, s, std::string(argv[3]));
+    }
+  }
+
+  if(strncmp("-list", argv[1], sizeof("-list"))==0){
+    if(strncmp("-game", argv[2], sizeof("-game"))==0){
+      send_request_list(false, s);
+    }
+    if(strncmp("-board", argv[2], sizeof("-board"))==0){
+      send_request_list(true, s);
+    }
+  }
+
+  char buf[DATA_SIZE];
+  int n;
+  while(1){
+    memset(buf, 0, DATA_SIZE);
+    n = recv(s, buf, DATA_SIZE, 0);
+    if(n==0){
+      break;
+    }
+
+    if(buf[0]==0){
+      /* Transmission over */
+      break;
+    }
+    
+    if(buf[0]==42){
+      /* Display type */
+      int len = buf[1];
+      for(int i=2; i<2+len; i++){
+        printf("%c", buf[i]);
+      }
+      printf("\n");
     }
   }
 
