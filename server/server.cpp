@@ -18,7 +18,7 @@ using namespace std;
 #define DATA_SIZE 1024
 #define PORT 8080
 
-bool game_already_exist(string pre, string f){
+bool file_already_exist(string pre, string f){
   f = pre+f;
   if(FILE* file = fopen(f.c_str(), "r")){
     fclose(file);
@@ -32,6 +32,80 @@ void send(int s, char* msg, int len){
     printf("Error send\n");
   }
 }
+
+void send_board_game(int s, char* msg){
+  bool board;
+  if (msg[0] == 7)
+    board = true;
+  else
+    board = false;
+  
+  string prefix;
+  
+  if(board)
+    prefix = "./boards/";
+  else
+    prefix = "./games/";
+
+  int len_name = msg[2];
+  
+  char name[64];
+  memset(name, 0, 64);
+  for(int i=0; i<len_name; i++){
+    name[i] = msg[3+i];
+  }
+
+  string file = std::string(name);
+  if(!file_already_exist(prefix, file)){
+    /* Requested file doesn't exist */
+    string warning = "Requested file doesn't exist";
+    char* rep = (char*)malloc(sizeof(char)*(warning.size()+2));
+    rep[0] = 42;
+    rep[1] = (int)warning.size();
+    for(int i=0; i<(int)warning.size(); i++)
+      rep[i+2] = warning[i];
+    send(s, rep, warning.size()+2);
+    free(rep);
+  }
+
+  char* rsp = (char*)malloc(sizeof(char)*DATA_SIZE);
+  memset(rsp, 0, DATA_SIZE);
+
+  if(board)
+    rsp[0] = 9;
+  else
+    rsp[0] = 10;
+
+  int len = 1;
+
+  int n = file.size();
+  rsp[2] = n;
+  for(int i=0; i<n; i++){
+    rsp[3+i] = file[i];
+    len++;
+  }
+
+  ifstream is(prefix+file);
+  char c;
+
+  int k = 2 + n + 1;
+  while(is.get(c)){
+    rsp[k] = c;
+    k++;
+    len ++;
+  }
+  rsp[k] = c;
+  len++;
+
+  rsp[1] = len;
+  is.close();
+
+  send(s, rsp, len+2);
+  printf("Requested file sent\n");
+  free(rsp);  
+  
+}
+
 void disconnect_client(int s){
   printf("Send disconnect to client\n");
   char* msg = (char*)malloc(sizeof(char)*2);
@@ -80,7 +154,7 @@ void receive_board_game(int s, char* buf){
     prefix = "./boards/";
 
   string name_str = std::string(name);
-  if(game_already_exist(prefix, name_str)){
+  if(file_already_exist(prefix, name_str)){
     /* Respond that the name is taken */        
   } else {
     /* Store in games/ */
@@ -144,6 +218,15 @@ int receive_message(int s){
           board = true;
         send_list_board_game(fd, board);
       }
+      if(buf[0] == 7 || buf[0] == 8){
+        char* msg = (char*)malloc(sizeof(char)*sizeof(buf));
+        memset(msg, 0, sizeof(buf));
+        memcpy(msg, buf, sizeof(buf));
+        send_board_game(fd, msg);
+        free(msg);
+        printf("Request for a file\n");
+      }
+      
       disconnect_client(fd);
     }
   }
