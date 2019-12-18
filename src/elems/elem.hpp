@@ -51,6 +51,10 @@ class Elem{
 
     /* Return a description of the elem */
     virtual string to_string();
+
+    virtual int getScore(){
+      return -1;
+    }
 };
 
 #endif
