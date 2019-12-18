@@ -62,7 +62,7 @@ void board_file_creator::start_board_creator(std::ofstream& file_stream) {
     WINDOW * command_window ;
 
     board_window = newwin(height, width, 3, 10);
-    command_window = newwin(12, 23, width+3+1, 10);
+    command_window = newwin(20, 40, width+3+1, 10);
 
     wrefresh(command_window);
     phase currentPhase = START_DOOR;
@@ -179,14 +179,16 @@ void board_file_creator::print_command_board(WINDOW *window, phase phase) {
             break;
         case OTHER:
             mvwprintw(window,4,1,
-                           " D -> DIAMOND\n"
-                           " S -> MONSTER\n"
-                           " * -> TELEPORTER\n"
-                           " X -> WALL\n"
-                           " E -> VOID\n"
-                           " O -> TRAP\n"
-                           " Q to close the editor"
-                           );
+                      " Pres following keys to add objects\n"
+                      " D -> DIAMOND\n"
+                      " S -> MONSTER\n"
+                      " * -> TELEPORTER\n"
+                      " X -> WALL\n"
+                      " E -> VOID\n"
+                      " O -> TRAP\n"
+                      " : -> QUIVER\n"
+                      " Q to close the editor"
+                      );
 
     }
     box(window, 0,0);
