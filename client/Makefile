@@ -2,7 +2,7 @@ cc = g++
 flags = --std=c++11 -Wall -g
 obj = client.o
 
-server: $(obj)
+client: $(obj)
 	$(cc) $(flags) -o client $^
 
 %.o: %.cpp

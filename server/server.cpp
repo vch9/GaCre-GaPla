@@ -9,12 +9,14 @@
 #include <string>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <dirent.h>
 
 using namespace std;
 #include <iostream>
 #include <fstream>
 
 #define DATA_SIZE 1024
+#define PORT 8080
 
 bool game_already_exist(string pre, string f){
   f = pre+f;
@@ -23,6 +25,38 @@ bool game_already_exist(string pre, string f){
     return true;
   }
   return false;
+}
+
+void send(int s, char* msg, int len){
+  if(send(s, msg, len, 0) == -1){
+    printf("Error send\n");
+  }
+}
+void disconnect_client(int s){
+  printf("Send disconnect to client\n");
+  char* msg = (char*)malloc(sizeof(char)*2);
+  memset(msg, 0, 2);
+  send(s, msg, 2);
+  free(msg);
+}
+
+void send_list_board_game(int s, bool board){
+  DIR* d;
+  struct dirent *dir;
+  if(board)
+    d = opendir("./boards/");
+  else
+    d = opendir("./games/");
+
+  while( (dir=readdir(d)) != NULL ){
+    if(strncmp(".", dir->d_name, 1)!=0 && strncmp("..", dir->d_name, 2)!=0){
+      char* msg = (char*)malloc(sizeof(char)*(strlen(dir->d_name)+2));
+      msg[0] = 42;
+      msg[1] = strlen(dir->d_name);
+      memcpy(msg+2, dir->d_name, strlen(dir->d_name));
+      send(s, msg, 2+strlen(dir->d_name));
+    }
+  }
 }
 
 void receive_board_game(int s, char* buf){
@@ -92,11 +126,8 @@ int receive_message(int s){
         printf("Transmission is over\n");
         break;
       }
-      if(buf[0]==1){
-        /* Client request list of .game */      
-      }
-      if(buf[0]==2){
-        /* Client request a specific game */
+      if(buf[1] == 1 || buf[0] == 2){
+        /* Client request a specific .board or .game */
       }
       if(buf[0] == 3 || buf[0] == 4){
         /* Client offers a .board or .game */
@@ -106,6 +137,14 @@ int receive_message(int s){
         receive_board_game(s, msg);
         free(msg);
       }
+      if(buf[0] == 5 || buf[0] == 6){
+        /* Client wants to display all .board or .games */
+        bool board = false;
+        if(buf[0] == 5)
+          board = true;
+        send_list_board_game(fd, board);
+      }
+      disconnect_client(fd);
     }
   }
 }
@@ -124,7 +163,7 @@ int main(){
 
   serv.sin_family = AF_INET;
   serv.sin_addr.s_addr = htonl(INADDR_ANY);
-  serv.sin_port = htons(8080);
+  serv.sin_port = htons(PORT);
 
   rc = bind(s, (sockaddr*)&serv, sizeof(serv));
   if (rc != 0){
