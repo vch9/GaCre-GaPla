@@ -17,9 +17,66 @@ using namespace std;
 #include <iostream>
 #include <fstream>
 
+bool file_exist(string path);
+
 void send(int s, char* msg, int len){
   if(send(s, msg, len, 0) == -1){
   }
+}
+
+void save_file(bool board, char* buf){
+  /* Save .game or .board in ../games or ../boards */
+  int len = buf[1];
+  int len_name = buf[2];
+
+  /* Copy name */
+  char name[64];
+  memset(name, 0, 64);
+  for(int i=0; i<len_name; i++){
+    name[i] = buf[3+i];
+  }
+
+  string prefix = "../games/";
+  if(board)
+    prefix = "../boards/";
+
+  string name_str = std::string(name);
+  if(file_exist(prefix+name_str)){
+    cout << prefix+name_str << " already exist ! " << endl;
+  } else {
+    string str = "";
+    for(int i=3+len_name; i<len; i++){
+      str += buf[i];
+    }
+    
+    ofstream outfile;
+    outfile.open(prefix+name_str);
+    outfile << str << endl;          
+    outfile.close();
+    
+    if(!board)
+      cout << "File saved: ../games/" << name_str  << endl;
+    else      
+      cout << "File saved: ../boards/" << name_str  << endl;
+  }
+}
+
+void send_request_board_game(bool board, int s, char* name){
+  char* msg = (char*)malloc(sizeof(char)*(strlen(name)+3));
+  memset(msg, 0, strlen(name)+3);
+
+  if (board)
+    msg[0] = 7;
+  else
+    msg[0] = 8;
+
+  msg[1] = 1+strlen(name);
+  msg[2] = strlen(name);
+  for(int i=0; i<(int)strlen(name); i++)
+    msg[i+3] = name[i];
+
+  send(s, msg, msg[1]+2);
+  free(msg);
 }
 
 void send_request_list(bool board, int s){
@@ -144,6 +201,15 @@ int main(int argc, char* argv[]){
     }
   }
 
+  if(strncmp("-request", argv[1], sizeof("-request"))==0){
+    if(strncmp("-game", argv[2], sizeof("-game"))==0){
+      send_request_board_game(false, s, argv[3]);
+    }
+    if(strncmp("-board", argv[2], sizeof("-board"))==0){
+      send_request_board_game(true, s, argv[3]);
+    }
+  }
+
   char buf[DATA_SIZE];
   int n;
   while(1){
@@ -165,6 +231,17 @@ int main(int argc, char* argv[]){
         printf("%c", buf[i]);
       }
       printf("\n");
+    }
+
+    if(buf[0] == 9 || buf[0] == 10){
+      char* msg = (char*)malloc(sizeof(char)*sizeof(buf));
+      memset(msg, 0, sizeof(buf));
+      memcpy(msg, buf, sizeof(buf));
+
+      if(buf[0] == 9)
+        save_file(true, msg);
+      else
+        save_file(false, msg);
     }
   }
 
