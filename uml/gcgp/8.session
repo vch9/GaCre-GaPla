@@ -1,0 +1,20 @@
+window_sizes 1920 1024 450 1464 967 0
+cleanlooks_style
+diagrams
+  active  classdiagram_ref 134920 // Elems
+    1244 836 103 A4 0 0
+  classdiagram_ref 134664 // Game
+    1171 773 100 A4 0 0
+end
+show_stereotypes
+selected classdiagram_ref 134920 // Elems
+open
+  operation_ref 128648 // takeAction
+  class_ref 134920 // Arrow
+  class_ref 135048 // Charge
+  class_ref 135176 // Diamond
+  class_ref 135304 // Door
+  class_ref 135432 // Wall
+  class_ref 135560 // Trap
+end
+end
