@@ -1,0 +1,87 @@
+format 222
+
+classcanvas 128008 class_ref 128392 // Elem
+  classdiagramsettings member_max_width 0 end
+  xyzwh 30.7601 74.5968 2000 174 153
+end
+classcanvas 128136 class_ref 134920 // Arrow
+  classdiagramsettings member_max_width 0 end
+  xyz 33.6947 306.785 2000
+end
+classcanvas 128264 class_ref 135048 // Charge
+  classdiagramsettings member_max_width 0 end
+  xyz 11.1176 396.438 2000
+end
+classcanvas 128392 class_ref 135176 // Diamond
+  classdiagramsettings member_max_width 0 end
+  xyz 191.569 472.589 2000
+end
+classcanvas 128520 class_ref 135304 // Door
+  classdiagramsettings member_max_width 0 end
+  xyz 6.48324 454.974 2005
+end
+classcanvas 128648 class_ref 135432 // Wall
+  classdiagramsettings member_max_width 0 end
+  xyz 209.317 317.177 2000
+end
+classcanvas 128776 class_ref 135560 // Trap
+  classdiagramsettings member_max_width 0 end
+  xyz 199.652 398.607 2005
+end
+classcanvas 128904 class_ref 135688 // Move
+  classdiagramsettings member_max_width 0 end
+  xyzwh 243.484 77.6762 2000 350 81
+end
+classcanvas 129032 class_ref 135816 // Health
+  classdiagramsettings member_max_width 0 end
+  xyzwh 634.956 78.6779 2000 209 107
+end
+classcanvas 129160 class_ref 135944 // Monster
+  classdiagramsettings member_max_width 0 end
+  xyz 387.099 353.833 2000
+end
+classcanvas 129288 class_ref 136072 // Player
+  classdiagramsettings member_max_width 0 end
+  xyzwh 613.612 291.987 2000 215 158
+end
+relationcanvas 130440 relation_ref 135688 // <generalisation>
+  from ref 129288 z 2001 to ref 129032
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130568 relation_ref 135816 // <generalisation>
+  from ref 129160 z 2001 to ref 129032
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130696 relation_ref 135944 // <generalisation>
+  from ref 129288 z 2001 to ref 128904
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130824 relation_ref 142472 // <generalisation>
+  from ref 129160 z 2001 to ref 128904
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130952 relation_ref 142600 // <generalisation>
+  from ref 128136 z 2001 to ref 128008
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131208 relation_ref 142856 // <generalisation>
+  from ref 128648 z 2001 to ref 128008
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131336 relation_ref 142984 // <generalisation>
+  from ref 129160 z 2001 to ref 128008
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131464 relation_ref 143112 // <generalisation>
+  from ref 129288 z 2001 to ref 128008
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end
