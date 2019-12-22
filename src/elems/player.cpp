@@ -7,7 +7,8 @@ Player::Player(Game* g, int t, int hp):
   Health(hp),
   arrow_count(2),
   diamond_count(0),
-  teleport_count(t){
+  teleport_count(t),
+  score(0){
 }
 
 void Player::addDiamond(int d){
@@ -20,6 +21,14 @@ void Player::addTeleport(){
 
 void Player::addArrow(int nb){
   Player::arrow_count = Player::arrow_count+nb;
+}
+
+void Player::addScore(int nb){
+  Player::score = Player::score + nb;
+}
+
+int Player::getScore(){
+  return Player::score;
 }
 
 void onCollision(Elem* e){
@@ -165,6 +174,7 @@ string Player::to_string(){
   s += "Teleports: " + std::to_string(Player::teleport_count) + "\n";
   s += "Diamonds: " + std::to_string(Player::diamond_count) + "\n";
   s += "Arrows: " + std::to_string(Player::arrow_count) + "\n";
+  s += "Score: " + std::to_string(Player::score) + "\n";
   return s;
 }
 

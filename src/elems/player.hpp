@@ -33,6 +33,7 @@ class Player: public Elem, public Move, public Health{
       int arrow_count;
       int diamond_count;
       int teleport_count;
+      int score;
 
     public:
       /* Constructors */
@@ -42,6 +43,10 @@ class Player: public Elem, public Move, public Health{
       void addDiamond(int);
       void addTeleport();
       void addArrow(int);
+      void addScore(int);
+
+      /* Getters */
+      int getScore();
 
       /* Waits for user's input,
           move topleft,

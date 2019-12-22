@@ -146,7 +146,7 @@ void Game::remove_door(){
 }
 
 /* public */
-void Game::play(){
+int Game::play(string leaderboard){
   srand (time(NULL));
   View::init();
   setPlayerSpawn(true);
@@ -164,15 +164,19 @@ void Game::play(){
         // cout << "You died :( " << endl;
         Game::boards.at(Game::current_board)->setElemOnCell(Game::player->getPosI(), Game::player->getPosJ(), nullptr);
         View::close(Game::boards.at(Game::current_board), "You died :-(");
-        return;
+        return -1;
       }
       Game::player->takeAction();
       nextTurn();
     }
   }
-  string end_message = "Congratulations, you beat the game with:\n" + Game::player->to_string();
+  string end_message = "Congratulations, you beat the game with:\n" + Game::player->to_string() + "\n";
 
+  end_message = end_message + leaderboard;
+  
   View::close(Game::boards.at(Game::current_board-1), end_message);
+
+  return Game::player->getScore();
 }
 
 void Game::openDoors(){

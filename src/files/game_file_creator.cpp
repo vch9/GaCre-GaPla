@@ -17,14 +17,20 @@ void game_file_creator::create_game_file(string out, vector<string> board_file_n
         ifstream src(board_name, ios::in);
 
         if(check_board(src)){
-            dst << '#' << endl << board_name<<endl;
+            dst << '#' << endl << board_name <<endl;
             cout << "board " << std::to_string(board_counter++) << " added" << endl;
         }
         else {
             cout << "error with board " << std::to_string(board_counter)<< endl;
         }
     }
+    dst << "$ Leaderboard" << endl;
+    for(int i=0; i<5; i++)
+      dst << "$ N/A" << endl;
+    
     cout << endl<<"Success !" << endl <<"Game created at " << out << endl;
+
+    dst.close();
 }
 void update_item_count(string s, int& exit_door, int& start_door, int& diams){
     start_door += std::count(s.begin(), s.end(),'+');

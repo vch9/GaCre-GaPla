@@ -57,8 +57,8 @@ class Game{
 
         /* Methods */
 
-        /* Start the game, calls itself recursively until the game is over */
-        void play();
+        /* Start the game, loop on the boards, and return the player's score */
+        int play(string leaderboard);
 
         /* Open all doors (when the player collects a diamond) */
         void openDoors();
