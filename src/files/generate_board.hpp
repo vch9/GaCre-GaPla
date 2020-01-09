@@ -1,6 +1,8 @@
 #ifndef GENERATE_BOARD
 #define GENERATE_BOARD
 
+#include "../game/game_endless.hpp"
+#include "../common/dijkstra.hpp"
 #include "../game/game.hpp"
 #include "../board/board.hpp"
 #include "../cells/cell.hpp"
@@ -16,13 +18,17 @@
 
 #include <iostream>
 #include <fstream>
+#include <cmath>
+#include <map>
 using namespace std;
-
+class Game_endless;
 class GenerateBoard{
     public:
         static int getBoardLines(string);
         static int getBoardCols(string);
-        static Board* createBoard(Game*, string);
+        static Board* createBoard(Game* g , string s);
+        static Board * createRandomBoard(Game_endless* g , int currentFloor  );
+
 };
 
 #endif

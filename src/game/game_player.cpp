@@ -2,11 +2,14 @@
 #include <string>
 #include <regex>
 #include <tuple>
-using namespace std;
 
 #include "../game/game.hpp"
 #include "../board/board.hpp"
 #include "../files/generate_board.hpp"
+#include "game_endless.hpp"
+using namespace std;
+
+string askForName();
 
 bool fileExists(string path){
   if (FILE *file = fopen(path.c_str(), "r")) {
@@ -14,7 +17,7 @@ bool fileExists(string path){
     return true;
   } else {
     return false;
-  } 
+  }
 }
 
 Board* createBoard(Game* g, string path){
@@ -90,9 +93,12 @@ string convert_vec_to_scores(vector<pair<string, int>> vects){
   string score = "$ Leaderboard\n";
   for(int i=0; i<5; i++){
     if(vects.at(i).first[0] == '$'){
-      score += vects.at(i).first + ":" + to_string(vects.at(i).second) + "\n";
+      score += vects.at(i).first + ":" + to_string(vects.at(i).second);
     } else {
-      score += "$ "+vects.at(i).first + "\n";
+      score += "$ "+vects.at(i).first;
+    }
+    if(i!=4){
+      score += "\n";
     }
   }
   return score;
@@ -107,15 +113,18 @@ void update_score(string game, string scores, int new_score, string pseudo){
   ifstream ifs;
   ifs.open(game, ifstream::in);
   char buf[256];
+  bool first = true;
   while(ifs.getline(buf, 256)){
     if(buf[0]=='$'){
       file_text += "\n";
       break;
     }
-    file_text += std::string(buf);
-
-    if (buf[0] == '#')
+    if(!first){
       file_text += "\n";
+    }
+    first = false;
+    file_text += std::string(buf);
+    
   }
   
   ofstream outfile;
@@ -123,7 +132,7 @@ void update_score(string game, string scores, int new_score, string pseudo){
   
   outfile.open(game);
   outfile << file_text << endl;
-
+  
   outfile.close();
 }
 
@@ -134,10 +143,8 @@ void playGame(string game){
     return;
   }
 
-  cout << "Enter your name: " << endl;
-  string pseudo;
-  std::getline(std::cin, pseudo);
-  
+  string pseudo = askForName();
+
   Game* g = new Game();
   vector<Board*> boards;
   
@@ -166,6 +173,13 @@ void playGame(string game){
   
 }
 
+string askForName() {
+    cout << "Enter your name: " << endl;
+    string pseudo;
+    getline(cin, pseudo);
+    return pseudo;
+}
+
 void playBoard(string board){
   board = "./boards/"+board;
   if(!fileExists(board)){
@@ -176,6 +190,27 @@ void playBoard(string board){
   vector<Board*> boards;
   boards.push_back(GenerateBoard::createBoard(game, board));
   play(game, boards, "");
+}
+
+void playEndless(string s_seed) {
+    Game_endless* game;
+    if(s_seed.compare("") != 0){
+        try {
+
+            int seed = std::stoi(s_seed);
+            game = new Game_endless(seed);
+        }catch(std::invalid_argument const &e){
+            std::cerr << "Bad input. The seed must be a number"<<endl;
+        }
+    } else  game = new Game_endless();
+
+    Board * first_board = GenerateBoard::createRandomBoard(game, 0);
+
+    vector<Board*> boards;
+    boards.push_back(first_board);
+
+
+    play((Game*) game,boards , askForName());
 }
 
 int main(int argc, char* argv[]){
@@ -191,6 +226,12 @@ int main(int argc, char* argv[]){
   }
   else if(std::regex_match(arg1, std::regex{".*\\.board"})){
     playBoard(arg1);
+  }
+  else if (arg1.compare("endless") == 0){
+      if(argc > 2 ){
+          playEndless(string(argv[2]));
+      }
+      playEndless("");
   }
   else{
     cerr << "unknown parameter" << endl;

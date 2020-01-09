@@ -46,6 +46,10 @@ To try a board run
 
 Game player will search for boards in roots/boards/ and games in root/games/
 
+To play endless mode
+```sh
+    $ ./gp endless [seed]
+```
 
 ## What is this game ?
 ```
