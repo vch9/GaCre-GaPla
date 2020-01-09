@@ -1,7 +1,7 @@
 cc = g++
 flags = --std=c++11 -Wall -g
 libs = -lncurses
-obj = game_player.o game.o
+obj = game_player.o game.o game_endless.o
 links = \
 ../actions/health.o ../actions/move.o \
 ../board/board.o \
@@ -16,9 +16,11 @@ links = \
 gp: $(obj)
 	$(cc) $(flags) -o gp $^ $(links) $(libs)
 
-game_player.o: ../game/game.hpp ../board/board.hpp ../files/generate_board.hpp
+game_player.o: game_endless.hpp ../game/game.hpp ../board/board.hpp ../files/generate_board.hpp
 
 game.o: game.hpp ../board/board.hpp ../elems/door.hpp ../elems/wall.hpp ../actions/health.hpp ../view/view.hpp
+
+game_endless.o: game_endless.hpp game.hpp ../board/board.hpp ../elems/door.hpp ../elems/wall.hpp ../actions/health.hpp ../view/view.hpp
 
 %.o: %.cpp
 	$(cc) $(flags) -o $@ -c $<

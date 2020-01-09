@@ -64,7 +64,7 @@ class Game{
         void openDoors();
 
         /* If next is true, we go to the next board, else we go to the previous one */
-        void changeBoard(bool next);
+        virtual void changeBoard(bool next);
 };
 
 #endif
